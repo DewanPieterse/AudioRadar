@@ -46,6 +46,8 @@ plt.show()
 
 # Record the Received Signal
 
+recordAudio()
+
 # recordLength = length(Tx_Signal) * ts;          # Set up the same time as transmitting signal
 # recordObject = audiorecorder(fs, 24, 1);        # Sampling freq, bits, mono or stereo (channels)
 # record(recordObject, recordLength * 2);
