@@ -27,8 +27,9 @@ def waveGenerator(freq, duration):
 def pulseTrainGenerator(frequency, duration, bandwidth, unambigRange, numPulses):
     
     fs = 44100
+    ts = 1/fs
     T = duration
-    t = np.linspace(0, duration, fs * duration)  #  Produces a x second Audio-File
+    t = np.linspace(0, duration, int(duration // ts))  #  Produces a x second Audio-File
     c = 343
     PRI = (2 * unambigRange) / c; # Pulse Repetition Interval [s]
     T = 100/bandwidth
@@ -56,9 +57,10 @@ def pulseTrainGenerator(frequency, duration, bandwidth, unambigRange, numPulses)
 def pulseGenerator(frequency, bandwidth, duration):
     
     fs = 44100
+    ts = 1/fs
     f0 = frequency - bandwidth/2 # Start frequency of chirp
     #f1 = frequency + bandwidth/2 # Stop frequency of chirp
-    t = np.linspace(0, duration, duration*fs)
+    t = np.linspace(0, duration, int(duration // ts))
     #T = 100 / bandwidth
     mu = bandwidth / duration # Chirp Rate
     
