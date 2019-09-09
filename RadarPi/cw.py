@@ -13,6 +13,8 @@ import numpy as np
 import math
 from scipy import signal
 import matplotlib.pyplot as plt
+from waveGenerator import pulseGenerator, pulseTrainGenerator, waveGenerator
+from rect import rect
 
 ## Define constants and parameters
 
@@ -20,7 +22,7 @@ pi = np.pi
 
 # Radar parameters
 
-fc = 8e3                            # Center Frequency [Hz]
+fc = 10e3                            # Center Frequency [Hz]
 T = 3                               # Pulse length in [s]
 c = 343                             # speed of sound [m/s]
 fs = 44.1e3                         # Sampling rate by soundcard [Hz]
@@ -30,7 +32,9 @@ t = np.arange(0, T, ts)             # time array
 
 # Generate Transmit signal 
 
-Tx_Signal = np.cos(2 * pi * fc * t)
+#Tx_Signal = np.cos(2 * pi * fc * t)
+
+fileName = waveGenerator(fc, T, 'cw')
 
 # figure;
 plt.plot(t,Tx_Signal);
@@ -46,7 +50,7 @@ plt.show()
 
 # Record the Received Signal
 
-recordAudio()
+#recordAudio()
 
 # recordLength = length(Tx_Signal) * ts;          # Set up the same time as transmitting signal
 # recordObject = audiorecorder(fs, 24, 1);        # Sampling freq, bits, mono or stereo (channels)
