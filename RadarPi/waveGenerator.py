@@ -7,10 +7,9 @@ from scipy.io import wavfile
 #from rect import rect
 #import time
 
-def waveGenerator(freq, duration):
+def waveGenerator(duration, frequency=10000):
     
     fs = 44100
-    frequency = freq # Sampling frequency
     
     t = np.linspace(0, duration, fs * duration)  #  Produces a x second Audio-File
         
@@ -75,9 +74,7 @@ def pulseGenerator(frequency, bandwidth, duration):
     
     name = 'Chirp ' + str(frequency) + 'Hz pulse.wave'
     wavfile.write(name, fs, y)
-    
-    #print('Successfully created ' + str(frequency) + 'Hz pulsed wave file with a bandwidth of ' + str(bandwidth) + 'Hz.')
-    
+        
     #f, t, Sxx = signal.spectrogram(y, fs)
     #plt.pcolormesh(t, f, Sxx)
     #plt.ylabel('Frequency [Hz]')
