@@ -1,10 +1,12 @@
+{% block body %}
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results | RadarPi</title>
+    <meta name="description" content="Non-Technical Implementation of the Continuous Radar">
+    <title>CW | RadarPi</title>
     <!--<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">-->
     <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">-->
     <!--<link rel="stylesheet" href="assets/fonts/material-icons.min.css">-->
@@ -15,7 +17,7 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-        <div class="container"><a class="navbar-brand logo" href="radarpi.html"><h1>RadarPi</h1></a>
+        <div class="container"><a class="navbar-brand logo" href="radarpi.html"><h1>RadarPi</h1>
         <!--<button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle Navigation</span><span class="navbar-toggler-icon"></span></button>-->
             <div class="collapse navbar-collapse"
                 id="navcol-1">
@@ -29,28 +31,19 @@
             </div>
         </div>
     </nav>
-    <main class="page landing-page">
-        <section class="clean-block clean-info dark">
+
+    <main class="page contact-us-page">
+        <section class="clean-block clean-form dark">
             <div class="container">
-                <div class="block-heading" style="height:350px;padding-bottom:40px;padding-top:40px;">
-                    <section class="clean-block clean-info dark" style="padding-right:0px;padding-left:0px;">
-                        <div class="container">
-                            <div class="row align-items-center">
-                                <div class="col-md-6" style="padding-left:0px;padding-right:0px;"><img class="img-thumbnail" src="assets/img/image5.jpg"></div>
-                                <div class="col-md-6">
-                                    <h3>Lorem impsum dolor sit amet</h3>
-                                    <div class="getting-started-info">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                    </div><a class="btn btn-outline-info btn-lg" role="button" href="#">Join Now</a></div>
-                            </div>
-                        </div>
-                    </section>
+                <div class="block-heading">
+                    <h2 class="text-info">Continuous Wave: Non-Technical</h2>
+                    <p class="text-left">This radar method is used to measure radial velocity. That means the velocity directly to, or from the radar.</p>
+                    <p class="text-left" style="padding-top:15px;">Set the time duration that a constant tone would be played out for. We recommend 5 seconds.</p>
                 </div>
-            </div>
-        </section>
-        <section class="clean-block features">
-            <div class="container">
-                <div class="block-heading"></div>
+                <form>
+                    <div class="form-group"><label>Duration</label><input class="form-control" type="text" placeholder="[2s - 10s]"></div>
+                    <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
+                </form>
             </div>
         </section>
     </main>
@@ -65,3 +58,4 @@
 </body>
 
 </html>
+{% endblock %}

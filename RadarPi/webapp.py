@@ -1,52 +1,45 @@
-from flask import Flask, render_template, request#test git
-import datetime
+from flask import Flask, render_template, request
 app = Flask(__name__)
+app._static_folder = "Users/dewanpieterse/Documents/MATLAB/EEE4022S/Audio\ Radar/AudioRadar/RadarPi/templates"
 
-@app.route("/")
+@app.route("/radarpi.html")
 def home():
-    now = datetime.datetime.now()
-    timeString = now.strftime("%Y-%m-%d %H:%M")
-    templateData = {
-        'title' : 'RadarPi | Home',
-        'time': timeString,
-        'heading':  'Embedded Audio Radar System',
-        'body': 'The radar has two options. Continuous Wave and Range-Doppler. \n Select one to continue.'
-        }
-    return render_template('main.html', **templateData)
+    return render_template('radarpi.html')
 
 
-@app.route("/cw")
-def cw():
-    now = datetime.datetime.now()
-    timeString = now.strftime("%Y-%m-%d %H:%M")
-    templateData = {
-        'title' : 'RadarPi | CW',
-        'time': timeString,
-        'heading':  'Embedded Audio Radar System',
-        'subheading': 'Continuous Wave Radar'
-        }
-    return render_template('main.html', **templateData)
+@app.route("/cwNT.html")
+def cwNT():
+    return render_template('cwNT.html')
+
+
+@app.route("/cwT.html")
+def cwT():
+    return render_template('cwT.html')
+
+
+@app.route("/pulsedopplerNT.html")
+def pulsedopplerNT():
+    return render_template('pulsedopplerNT.html')
 
 
 
-@app.route('/pulsedoppler')
-def pulsedoppler():
-    now = datetime.datetime.now()
-    timeString = now.strftime("%Y-%m-%d %H:%M")
-    templateData = {
-        'title' : 'RadarPi | PD',
-        'time': timeString,
-        'heading':  'Embedded Audio Radar System',
-        'subheading': 'Pulse-Doppler Wave Radar'
-        }
-    return render_template('pulsedoppler.html')
+@app.route('/pulsedopplerT.html')
+def pulsedopplerT():
+    return render_template('pulsedopplerT.html')
+
+
+
+
+
     
-@app.route('/results',methods = ['POST', 'GET'])
+@app.route('/results.html',methods = ['POST', 'GET'])
 def result():
    if request.method == 'POST':
       results = request.form
       return render_template("results.html",results = results)
 
 
+
+
 if __name__ == "__main__":
-    app.run(host='radarpi.local', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)#host='radarpi.local'
