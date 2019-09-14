@@ -1,7 +1,9 @@
+import waveGenerator
 from flask import Flask, render_template, request
 app = Flask(__name__)
-app._static_folder = "Users/dewanpieterse/Documents/MATLAB/EEE4022S/Audio\ Radar/AudioRadar/RadarPi/templates"
+#app._static_folder = "Users/dewanpieterse/Documents/MATLAB/EEE4022S/Audio\ Radar/AudioRadar/RadarPi/static"
 
+@app.route("/")
 @app.route("/radarpi.html")
 def home():
     return render_template('radarpi.html')
@@ -22,7 +24,6 @@ def pulsedopplerNT():
     return render_template('pulsedopplerNT.html')
 
 
-
 @app.route('/pulsedopplerT.html')
 def pulsedopplerT():
     return render_template('pulsedopplerT.html')
@@ -33,11 +34,28 @@ def pulsedopplerT():
 
     
 @app.route('/results.html',methods = ['POST', 'GET'])
-def result():
+def results():
    if request.method == 'POST':
       results = request.form
+      # Do processing here!
+      #duration = request.form["duration"]
+      #print(duration)
+      duration = request.form['duration']
+      
+      if not duration:
+          print()
+          
+      else:
+          range = request.form['range']
+          
+          if not range:
+              
+              resolution = request.form['resolution']
+              
+              waveGenerator.pulseTrainGenerator(resolution)
+      
+          
       return render_template("results.html",results = results)
-
 
 
 

@@ -24,7 +24,7 @@ def waveGenerator(duration, frequency=10000):
     return name
 
 
-def pulseTrainGenerator(frequency, bandwidth, unambigRange, numPulses):
+def pulseTrainGenerator(resolution, unambigRange=10, frequency=8000, bandwidth=1000, numPulses=32):
     
     fc = int(frequency)                # Center Frequency [Hz]
     B = int(bandwidth)                 # Bandwidth [Hz] 
