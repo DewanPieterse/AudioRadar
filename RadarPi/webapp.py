@@ -1,7 +1,6 @@
 import waveGenerator
 from flask import Flask, render_template, request
 app = Flask(__name__)
-#app._static_folder = "Users/dewanpieterse/Documents/MATLAB/EEE4022S/Audio\ Radar/AudioRadar/RadarPi/static"
 
 @app.route("/")
 @app.route("/radarpi.html")
@@ -36,26 +35,56 @@ def pulsedopplerT():
 @app.route('/results.html',methods = ['POST', 'GET'])
 def results():
    if request.method == 'POST':
-      results = request.form
+      results = request.form       
       # Do processing here!
       #duration = request.form["duration"]
       #print(duration)
-      duration = request.form['duration']
+      mode = request.form['mode']
       
-      if not duration:
-          print()
+      if mode == 'Continuous Non-Technical':
           
-      else:
-          range = request.form['range']
+          duration = float(request.form["duration"])
           
-          if not range:
-              
-              resolution = request.form['resolution']
-              
-              waveGenerator.pulseTrainGenerator(resolution)
+          waveGenerator.waveGenerator(duration)
+          
+          return render_template("results.html",results = results)
+      
+      elif mode == 'Continuous Technical':
+          
+          frequency = float(request.form["frequency"])
+          duration = float(request.form["duration"])
+          
+          waveGenerator.waveGenerator(duration, frequency)
+          
+          return render_template("results.html",results = results)
+      
+      elif mode == 'Pulse Doppler Non-Technical':
+          
+          rangeU = float(request.form["rangeU"])
+          
+          [Tx_Signal, Tx_p] = waveGenerator.pulseTrainGenerator(rangeU)
+          
+          return render_template("results.html",results = results)
+      
+      elif mode == 'Pulse Doppler Technical':
+          
+          rangeU = request.form["rangeU"]
+          resolution = request.form["resolution"]
+          frequency = request.form["frequency"]
+          bandwidth = request.form["bandwidth"]
+          pulses = request.form["pulses"]
+          
+          [Tx_Signal, Tx_p] = waveGenerator.pulseTrainGenerator(rangeU,resolution,frequency,bandwidth,pulses)
+          
+          return render_template("results.html",results = results)
+          
+      else:# mode == 'Continuous Technical':
+          
+          return render_template("none.html")
+          
       
           
-      return render_template("results.html",results = results)
+      
 
 
 

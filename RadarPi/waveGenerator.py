@@ -15,16 +15,16 @@ def waveGenerator(duration, frequency=10000):
         
     y = np.sin(frequency * 2 * np.pi * t)  #  Has frequency of 440Hz
     
-    name = str(frequency) + 'Hz.wave' 
+    name = './static/' + str(frequency) + 'Hz.wave' 
 
     wavfile.write(name, fs, y)
     
-    print('Successfully created ' + str(frequency) + 'Hz continuous wave file.')
+    #print('Successfully created ' + str(frequency) + 'Hz continuous wave file.')
     
-    return name
+    #return name
 
 
-def pulseTrainGenerator(resolution, unambigRange=10, frequency=8000, bandwidth=1000, numPulses=32):
+def pulseTrainGenerator(unambigRange, resolution=1, frequency=8000, bandwidth=1000, numPulses=32):
     
     fc = int(frequency)                # Center Frequency [Hz]
     B = int(bandwidth)                 # Bandwidth [Hz] 
@@ -45,7 +45,7 @@ def pulseTrainGenerator(resolution, unambigRange=10, frequency=8000, bandwidth=1
     #K = B/T                            # Chirp rate
 
     # Generate Transmit pulse and signal
-    y = pulseGenerator(fc,B,T)
+    y = pulseGenerator(T,fc,B)
     pulsePadded = np.pad(y, (0,(len(t)-len(y))), 'constant')
     Tx_Signal = np.tile(pulsePadded, numPulses)
     Tx_p = np.pad(pulsePadded, (0, (len(Tx_Signal)-len(pulsePadded))), 'constant')    
@@ -60,7 +60,7 @@ def pulseTrainGenerator(resolution, unambigRange=10, frequency=8000, bandwidth=1
     return Tx_Signal, Tx_p
 
 
-def pulseGenerator(frequency, bandwidth, duration):
+def pulseGenerator(duration, frequency=8000, bandwidth=2000):
     
     fs = 44100
     ts = 1/fs

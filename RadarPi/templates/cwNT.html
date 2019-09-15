@@ -46,7 +46,8 @@
                     <p class="text-left" style="padding-top:15px;">Set the time duration that a constant tone would be played out for. We recommend 5 seconds.</p>
                 </div>
                 <form action = "http://localhost:8080/results.html" method = "POST">
-                    <div class="form-group"><label>Duration</label><input class="form-control" type="text" name="duration"></div>
+                    <div class="form-group"><label for="readonly">Mode</label><input class="form-control" type="text" name="mode" placeholder="Continuous Non-Technical" value="Continuous Non-Technical" readonly></div>
+                    <div class="form-group"><label>Duration</label><input class="form-control" type="number" name="duration" placeholder="2s - 5s"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
                 </form>
             </div>
