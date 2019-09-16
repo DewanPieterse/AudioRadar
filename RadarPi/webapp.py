@@ -28,9 +28,6 @@ def pulsedopplerT():
 def results():
    if request.method == 'POST':
       results = request.form       
-      # Do processing here!
-      #duration = request.form["duration"]
-      #print(duration)
       mode = request.form['mode']
       
       if mode == 'Continuous Non-Technical':
@@ -38,7 +35,7 @@ def results():
           duration = float(request.form["duration"])
           
           waveGenerator.waveGenerator(duration)
-          name = '10000Hz.wave' 
+          name = '8000Hz.wave' 
           playSound(name)
           
           return render_template("results.html",results = results)
@@ -49,7 +46,8 @@ def results():
           duration = float(request.form["duration"])
           
           waveGenerator.waveGenerator(duration, frequency)
-          name = './static/' + str(frequency) + 'Hz.wave' 
+          name = str(int(frequency)) + 'Hz.wave'
+          playSound(name)
           
           return render_template("results.html",results = results)
       
@@ -57,7 +55,11 @@ def results():
           
           rangeU = float(request.form["rangeU"])
           
-          [Tx_Signal, Tx_p] = waveGenerator.pulseTrainGenerator(rangeU)
+          Tx_Signal, Tx_p = waveGenerator.pulseTrainGenerator(rangeU)
+          
+          name = 'Chirp 8000Hz.wave'
+
+          playSound(name)
           
           return render_template("results.html",results = results)
       
@@ -69,11 +71,15 @@ def results():
           bandwidth = request.form["bandwidth"]
           pulses = request.form["pulses"]
           
-          [Tx_Signal, Tx_p] = waveGenerator.pulseTrainGenerator(rangeU,resolution,frequency,bandwidth,pulses)
+          Tx_Signal, Tx_p = waveGenerator.pulseTrainGenerator(rangeU,resolution,frequency,bandwidth,pulses)
+          
+          name = 'Chirp ' + str(int(frequency)) + 'Hz.wave'
+          
+          playSound(name)
           
           return render_template("results.html",results = results)
           
-      else:# mode == 'Continuous Technical':
+      else:
           
           return render_template("none.html")
           
@@ -84,4 +90,4 @@ def results():
 
 
 if __name__ == "__main__":
-    app.run(host='radarpi.local', port=8080, debug=True)#host='0.0.0.0'
+    app.run(host='RadarPi.local', port=8080, debug=True)#host='0.0.0.0'

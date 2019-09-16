@@ -36,13 +36,13 @@
                     <h2 class="text-info">Pulse Doppler Radar: Technical</h2>
                     <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
                 </div>
-                <form action = "http://localhost:8080/results.html" method = "POST">
+                <form action = "http://RadarPi.local:8080/results.html" method = "POST">
                     <div class="form-group"><label for="readonly">Mode</label><input class="form-control" type="text" name="mode" placeholder="Pulse Doppler Non-Technical" value="Pulse Doppler Non-Technical" readonly></div>
-                    <div class="form-group"><label>Range Resolution</label><input class="form-control" type="number" name="resolution"></div>
-                    <div class="form-group"><label>Range</label><input class="form-control" type="number" name="rangeU"></div>
-                    <div class="form-group"><label>Frequency</label><input class="form-control" type="number" name="frequency"></div>
-                    <div class="form-group"><label>Bandwidth</label><input class="form-control" type="number" name="bandwidth"></div>
-                    <div class="form-group"><label>Number of Pulses</label><input class="form-control" type="number" name="pulses"></div>
+                    <div class="form-group"><label>Range Resolution</label><input class="form-control" type="number" name="resolution" step="0.01" placeholder="0.05m - 1m"></div>
+                    <div class="form-group"><label>Range</label><input class="form-control" type="number" name="rangeU" placeholder="2m - 15m"></div>
+                    <div class="form-group"><label>Frequency</label><input class="form-control" type="number" name="frequency" placeholder="5000Hz - 15000Hz"></div>
+                    <div class="form-group"><label>Bandwidth</label><input class="form-control" type="number" name="bandwidth" placeholder="500Hz - 5000Hz"></div>
+                    <div class="form-group"><label>Number of Pulses</label><input class="form-control" type="number" name="pulses" placeholder="16 - 64"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
                 </form>
             </div>
