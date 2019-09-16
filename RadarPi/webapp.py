@@ -1,4 +1,5 @@
 import waveGenerator
+from playSound import playSound
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
@@ -7,30 +8,21 @@ app = Flask(__name__)
 def home():
     return render_template('radarpi.html')
 
-
 @app.route("/cwNT.html")
 def cwNT():
     return render_template('cwNT.html')
-
 
 @app.route("/cwT.html")
 def cwT():
     return render_template('cwT.html')
 
-
 @app.route("/pulsedopplerNT.html")
 def pulsedopplerNT():
     return render_template('pulsedopplerNT.html')
 
-
 @app.route('/pulsedopplerT.html')
 def pulsedopplerT():
     return render_template('pulsedopplerT.html')
-
-
-
-
-
     
 @app.route('/results.html',methods = ['POST', 'GET'])
 def results():
@@ -46,6 +38,8 @@ def results():
           duration = float(request.form["duration"])
           
           waveGenerator.waveGenerator(duration)
+          name = '~/10000Hz.wave' 
+          playSound(name)
           
           return render_template("results.html",results = results)
       
@@ -55,6 +49,7 @@ def results():
           duration = float(request.form["duration"])
           
           waveGenerator.waveGenerator(duration, frequency)
+          name = './static/' + str(frequency) + 'Hz.wave' 
           
           return render_template("results.html",results = results)
       
