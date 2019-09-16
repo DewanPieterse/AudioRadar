@@ -38,7 +38,7 @@ def results():
           duration = float(request.form["duration"])
           
           waveGenerator.waveGenerator(duration)
-          name = '~/10000Hz.wave' 
+          name = '10000Hz.wave' 
           playSound(name)
           
           return render_template("results.html",results = results)
@@ -84,4 +84,4 @@ def results():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=8080, debug=True)#host='radarpi.local'
+    app.run(host='radarpi.local', port=8080, debug=True)#host='0.0.0.0'

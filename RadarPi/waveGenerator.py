@@ -13,11 +13,17 @@ def waveGenerator(duration, frequency=10000):
     
     t = np.linspace(0, duration, fs * duration)  #  Produces a x second Audio-File
         
-    y = np.sin(frequency * 2 * np.pi * t)  #  Has frequency of 440Hz
+    y = np.int16(np.sin(frequency * 2 * np.pi * t) * 32767)
     
-    name = './static/' + str(frequency) + 'Hz.wave' 
+    name = './static/' + str(frequency) + 'Hz.wave'
+    
+    #y = np.int8(y)
+    
+#     y = y.astype('int16') * 32767
 
     wavfile.write(name, fs, y)
+    
+#     print(y.dtype)
     
     #print('Successfully created ' + str(frequency) + 'Hz continuous wave file.')
     

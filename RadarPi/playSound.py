@@ -1,9 +1,12 @@
-from pygame import mixer
+import pygame
 
 def playSound(fileName):
     
-    mixer.init() # Initialize pygame mixer
-    file = '/home/pi/Documents/RadarPi/' + fileName
+    pygame.init() # Initialize pygame 
+#     pygame.mixer.pre_init(frequency=44100, size=-16, channels=1, buffer=88200)
+    file = '/home/pi/Documents/RadarPi/static/' + fileName
 
-    sound = mixer.Sound(file) # Load the sounds
+    sound = pygame.mixer.Sound(file) # Load the sounds
     sound.play()
+
+# playSound('6000Hz.wave')
