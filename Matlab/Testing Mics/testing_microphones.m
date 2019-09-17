@@ -1,8 +1,8 @@
-clear all;clc;close all;
+% clear all;clc;close all;
 
 % open('withAmp.mat');
 % open('withoutAmp.mat');
-VarName1 = xlsread('./Suspended Mic Testing/15000.xlsx');
+% VarName1 = xlsread('./Suspended Mic Testing/15000.xlsx');
 
 % test1 = load ('withAmp.mat');
 % test1 = test1.unnamed;
@@ -19,11 +19,11 @@ t = (0:1:(N-1))*ts;
 y = test1;
 
 % plot our signal: time-domain
-% figure;
-% plot(t, y, 'r'); % t : x- axis, y: y -axis
-% xlabel('Time (s)');
-% ylabel('Signal y');
-% grid on;
+figure;
+plot(t, y, 'r'); % t : x- axis, y: y -axis
+xlabel('Time (s)');
+ylabel('Signal y');
+grid on;
 
 % Plot the spectrum: frequency domain
 figure; 
