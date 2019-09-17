@@ -1,30 +1,36 @@
 #!/usr/bin/env python3
 
 import numpy as np
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 #from scipy import signal
 from scipy.io import wavfile
 #from rect import rect
 #import time
 
-def waveGenerator(duration, frequency=10000):
+def waveGenerator(duration, frequency=8000):
     
     fs = 44100
     
     t = np.linspace(0, duration, fs * duration)  #  Produces a x second Audio-File
         
-    y = np.sin(frequency * 2 * np.pi * t)  #  Has frequency of 440Hz
+    y = np.int16(np.sin(frequency * 2 * np.pi * t) * 32767)
     
-    name = './static/' + str(frequency) + 'Hz.wave' 
+    name = './static/' + str(int(frequency)) + 'Hz.wave'
+    
+    #y = np.int8(y)
+    
+#     y = y.astype('int16') * 32767
 
     wavfile.write(name, fs, y)
+    
+#     print(y.dtype)
     
     #print('Successfully created ' + str(frequency) + 'Hz continuous wave file.')
     
     #return name
 
 
-def pulseTrainGenerator(unambigRange, resolution=1, frequency=8000, bandwidth=1000, numPulses=32):
+def pulseTrainGenerator(unambigRange, resolution=0.05, frequency=8000, bandwidth=4000, numPulses=32):
     
     fc = int(frequency)                # Center Frequency [Hz]
     B = int(bandwidth)                 # Bandwidth [Hz] 
@@ -34,28 +40,28 @@ def pulseTrainGenerator(unambigRange, resolution=1, frequency=8000, bandwidth=10
 
     c = 343                            # speed of sound [m/s]
     PRI = (2 * UnambigRange) / c       # Pulse Repetition Interval [s]
-    #PulseCompressionGain = T * B       # Pulse Compression needs to be higher than 100 to ensure 13dB between sidelobe and mainlobe. 
+    #PulseCompressionGain = T * B       # Pulse Compression needs to be higher than 100 to ensure 13dB between sidelobe and mainlobe.
+    B = c / (2 * resolution)
     fs = 44100                         # Sampling rate by soundcard [Hz]
     ts = 1/fs                          # Sampling period [s]
     #PRF = 1/PRI                        # Hz
     #t_max = PRI * numPulses            # Maximum time to simulate 
     #lamda = c/fc
-    t  = np.arange(0,(PRI),ts)    # Time vector (in seconds)
+    t  = np.arange(0,(PRI),ts)         # Time vector (in seconds)
 
     #K = B/T                            # Chirp rate
 
     # Generate Transmit pulse and signal
     y = pulseGenerator(T,fc,B)
+#     print(len(t))
+#     print(len(y))
     pulsePadded = np.pad(y, (0,(len(t)-len(y))), 'constant')
     Tx_Signal = np.tile(pulsePadded, numPulses)
     Tx_p = np.pad(pulsePadded, (0, (len(Tx_Signal)-len(pulsePadded))), 'constant')    
     
-    name = 'Chirp ' + str(frequency) + 'Hz.wave' 
+    name = './static/Chirp ' + str(int(frequency)) + 'Hz.wave' 
 
     wavfile.write(name, fs, Tx_Signal)
-    
-    #print('Successfully created ' + str(frequency) + 'Hz pulsed wave file with a bandwidth of ' + str(bandwidth) + '.')
-    #print('Successfully created ' + str(numPulses) + ' pulses in second wave file.')
     
     return Tx_Signal, Tx_p
 
@@ -70,15 +76,9 @@ def pulseGenerator(duration, frequency=8000, bandwidth=2000):
     #T = 100 / bandwidth
     mu = bandwidth / duration # Chirp Rate
     
-    y = np.cos(2 * np.pi * (f0 * t + 0.5 * mu * t**2));
+    y = np.int16(np.cos(2 * np.pi * (f0 * t + 0.5 * mu * t**2)) * 32767)
     
-    name = 'Chirp ' + str(frequency) + 'Hz pulse.wave'
-    wavfile.write(name, fs, y)
-        
-    #f, t, Sxx = signal.spectrogram(y, fs)
-    #plt.pcolormesh(t, f, Sxx)
-    #plt.ylabel('Frequency [Hz]')
-    #plt.xlabel('Time [sec]')
-    #plt.show()
+#     name = './static/Chirp ' + str(frequency) + 'Hz pulse.wave'
+#     wavfile.write(name, fs, y)
     
     return y

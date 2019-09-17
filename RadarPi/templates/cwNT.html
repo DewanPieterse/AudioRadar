@@ -29,14 +29,6 @@
             </div>
         </div>
     </nav>
-    <div class="card">
-        <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs">
-                <li class="nav-item"><a class="nav-link active" href="#">First Item</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Second Item</a></li>
-            </ul>
-        </div>
-    </div>
     <main class="page contact-us-page">
         <section class="clean-block clean-form dark">
             <div class="container">
@@ -45,7 +37,7 @@
                     <p class="text-left">This radar method is used to measure radial velocity. That means the velocity directly to, or from the radar.</p>
                     <p class="text-left" style="padding-top:15px;">Set the time duration that a constant tone would be played out for. We recommend 5 seconds.</p>
                 </div>
-                <form action = "http://localhost:8080/results.html" method = "POST">
+                <form action = "http://RadarPi.local:8080/results.html" method = "POST">
                     <div class="form-group"><label for="readonly">Mode</label><input class="form-control" type="text" name="mode" placeholder="Continuous Non-Technical" value="Continuous Non-Technical" readonly></div>
                     <div class="form-group"><label>Duration</label><input class="form-control" type="number" name="duration" placeholder="2s - 5s"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
