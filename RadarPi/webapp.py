@@ -1,6 +1,11 @@
+#!/usr/bin/python3
+
 import waveGenerator
+import recordAudio
+import cwProcessing
 from playSound import playSound
 from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -37,6 +42,9 @@ def results():
           waveGenerator.waveGenerator(duration)
           name = '8000Hz.wave' 
           playSound(name)
+          Rx_Signal = recordAudio.recordAudio(duration*1.2)
+
+          cwProcessing.cwProcessing(Rx_Signal)
           
           return render_template("results.html",results = results)
       
