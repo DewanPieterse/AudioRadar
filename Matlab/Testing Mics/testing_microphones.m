@@ -9,7 +9,7 @@
 % test2 = load ('withoutAmp.mat');
 % test2 = test2.unnamed;
 
-test1 = VarName1;
+test1 = Rx_Signal;
 
 fs = 44.1e3; % Sampling frequency
 ts = 1/fs; % Sampling period
@@ -23,7 +23,7 @@ figure;
 plot(t, y, 'r'); % t : x- axis, y: y -axis
 xlabel('Time (s)');
 ylabel('Signal y');
-grid on;
+grid on; 
 
 % Plot the spectrum: frequency domain
 figure; 
@@ -56,3 +56,15 @@ grid on;
 xlabel('Frequency (Hz)');
 ylabel('Magnitude of spectrum of y');
 title('MAX9814 Microphone - No Amp');
+
+%%
+
+[y,Fs] = audioread('recordedAudio.wave');
+sound(y,Fs)
+
+t = 0:seconds(1/Fs):seconds(info.Duration);
+t = t(1:end-1);
+
+plot(t,y)
+xlabel('Time')
+ylabel('Audio Signal')
