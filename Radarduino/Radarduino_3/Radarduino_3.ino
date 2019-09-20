@@ -17,7 +17,7 @@ void setup() {
 
   Serial.begin(500000);
 
-//  Serial.println("Begin setup");
+  //  Serial.println("Begin setup");
 
   ///// ADC0 ////
   // reference can be ADC_REFERENCE::REF_3V3, ADC_REFERENCE::REF_1V2 (not for Teensy LC) or ADC_REFERENCE::REF_EXT.
@@ -38,7 +38,7 @@ void setup() {
   //adc->enableCompare(1.0/3.3*adc->getMaxValue(ADC_0), 0, ADC_0); // measurement will be ready if value < 1.0V
   //adc->enableCompareRange(1.0*adc->getMaxValue(ADC_0)/3.3, 2.0*adc->getMaxValue(ADC_0)/3.3, 0, 1, ADC_0); // ready if value lies out of [1.0,2.0] V
 
-//  Serial.println("End setup");
+  //  Serial.println("End setup");
 
 }
 
@@ -46,28 +46,57 @@ uint16_t value;
 int samples;
 char tic, toc;
 char t;
+uint32_t freq = 44100;
+char on = 0;
+int c;
 
 void loop() {
 
   if (Serial.available()) {
-    
-      samples = Serial.parseInt();
-      uint16_t audio[samples];
+
+    samples = Serial.parseInt();
+    if (samples > 0) {
+      //      adc->adc0->stopPDB();
+      //      adc->adc0->startSingleRead(readPin); // call this to setup everything before the pdb starts,
       adc->enableInterrupts(ADC_0);
-      
-      for (int i = 0; i < samples; i++) {
-        //value = (uint16_t)adc->readSingle(ADC_0); // the unsigned is necessary for 16 bits, otherwise values larger than 3.3/2 V are negative!
-        Serial.println(buffer->read() * 3.3 / adc->getMaxValue(), DEC);
-      }
+      //      adc->adc0->startPDB(freq); //frequency in Hz
+
+      //    while(audio < samples){
+      //      value = adc->readSingle(ADC_0); // the unsigned is necessary for 16 bits,
+      //      audio.append = (value * 3.3 / adc->getMaxValue(ADC_0), DEC);
+      //    }
+      //
+      //      for (int i = 0; i < samples; i++) {
+      //        value = (uint16_t)adc->readSingle(ADC_0); // the unsigned is necessary for 16 bits, otherwise values larger than 3.3/2 V are negative!
+      //        //        buffer->write(value);
+      //        //        audio[i] = (buffer->read() * 3.3 / adc->getMaxValue(), DEC);
+      //        //        Serial.println(buffer->read() * 3.3 / adc->getMaxValue(), DEC);
+      //        Serial.println(value * 3.3 / adc->getMaxValue(), DEC);
+    }
+    adc->disableInterrupts(ADC_0);
+
+    //    else if (c == 'r') {
+    //      Serial.println(adc->adc0->getPDBFrequency());
+    //      for (char j; j < samples; j++) {
+    //        Serial.println(audio[j]);
+    //      }
+    //    }
   }
 }
 
+
 // If you enable interrupts make sure to call readSingle() to clear the interrupt.
 void adc0_isr() {
-  buffer->write(adc->adc0->readSingle());//analogReadContinuous();
+  if (samples > 0) {
+    value = adc->readSingle();
+    Serial.println(value * 3.3 / adc->getMaxValue());
+//    digitalWriteFast(LED_BUILTIN, !digitalReadFast(LED_BUILTIN) );
+    samples--;
+  }
 }
 
 // pdb interrupt is enabled in case you need it.
 void pdb_isr(void) {
   PDB0_SC &= ~PDB_SC_PDBIF; // clear interrupt
+  //digitalWriteFast(LED_BUILTIN, !digitalReadFast(LED_BUILTIN) );
 }

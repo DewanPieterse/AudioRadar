@@ -15,7 +15,7 @@ void setup() {
   //  pinMode(LED_BUILTIN, OUTPUT);
   //  pinMode(readPin, INPUT);
 
-  Serial.begin(500000);
+  Serial.begin(12e6);
 
 //  Serial.println("Begin setup");
 
@@ -46,28 +46,52 @@ uint16_t value;
 int samples;
 char tic, toc;
 char t;
+uint32_t freq = 44100;
+char on = 0;
+int c;
 
 void loop() {
 
   if (Serial.available()) {
     
       samples = Serial.parseInt();
-      uint16_t audio[samples];
+//      uint16_t audio[samples];
+      adc->adc0->stopPDB();
+      adc->adc0->startSingleRead(readPin); // call this to setup everything before the pdb starts,
       adc->enableInterrupts(ADC_0);
-      
+      adc->adc0->startPDB(freq); //frequency in Hz
+
+      //    while(audio < samples){
+      //      value = adc->readSingle(ADC_0); // the unsigned is necessary for 16 bits,
+      //      audio.append = (value * 3.3 / adc->getMaxValue(ADC_0), DEC);
+      //    }
+      //
       for (int i = 0; i < samples; i++) {
-        //value = (uint16_t)adc->readSingle(ADC_0); // the unsigned is necessary for 16 bits, otherwise values larger than 3.3/2 V are negative!
-        Serial.println(buffer->read() * 3.3 / adc->getMaxValue(), DEC);
+        value = (uint16_t)adc->readSingle(ADC_0); // the unsigned is necessary for 16 bits, otherwise values larger than 3.3/2 V are negative!
+//        buffer->write(value);
+//        audio[i] = (buffer->read() * 3.3 / adc->getMaxValue(), DEC);
+//        Serial.println(buffer->read() * 3.3 / adc->getMaxValue(), DEC);
+        Serial.println(value * 3.3 / adc->getMaxValue(), DEC);
       }
+    
+//    else if (c == 'r') {
+//      Serial.println(adc->adc0->getPDBFrequency());
+//      for (char j; j < samples; j++) {
+//        Serial.println(audio[j]);
+//      }
+//    }
   }
 }
 
 // If you enable interrupts make sure to call readSingle() to clear the interrupt.
 void adc0_isr() {
-  buffer->write(adc->adc0->readSingle());//analogReadContinuous();
+  adc->adc0->analogReadContinuous();
+  //  audio[] =
+  digitalWriteFast(LED_BUILTIN, !digitalReadFast(LED_BUILTIN) );
 }
 
 // pdb interrupt is enabled in case you need it.
 void pdb_isr(void) {
   PDB0_SC &= ~PDB_SC_PDBIF; // clear interrupt
+  //digitalWriteFast(LED_BUILTIN, !digitalReadFast(LED_BUILTIN) );
 }
