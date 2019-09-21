@@ -10,88 +10,96 @@ app = Flask(__name__)
 
 @app.route("/")
 @app.route("/radarpi.html")
+@app.route("/radarpi")
 def home():
     return render_template('radarpi.html')
 
 @app.route("/cwNT.html")
+@app.route("/cwNT")
 def cwNT():
     return render_template('cwNT.html')
 
 @app.route("/cwT.html")
+@app.route("/cwT")
 def cwT():
     return render_template('cwT.html')
 
 @app.route("/pulsedopplerNT.html")
+@app.route("/pulsedopplerNT")
 def pulsedopplerNT():
     return render_template('pulsedopplerNT.html')
 
 @app.route('/pulsedopplerT.html')
+@app.route('/pulsedopplerT')
 def pulsedopplerT():
     return render_template('pulsedopplerT.html')
     
 @app.route('/results.html',methods = ['POST', 'GET'])
 def results():
-   if request.method == 'POST':
-      results = request.form       
-      mode = request.form['mode']
+    if request.method == 'POST':
+        results = request.form       
+        mode = request.form['mode']
       
-      if mode == 'Continuous Non-Technical':
-          
-          duration = float(request.form["duration"])
-          
-          waveGenerator.waveGenerator(duration)
-          name = '8000Hz.wave' 
-          playSound(name)
-          Rx_Signal = recordAudio.recordAudio(duration*1.2)
+        try:
+            if mode == 'Continuous Non-Technical':
+              
+                duration = float(request.form["duration"])
+              
+                waveGenerator.waveGenerator(duration)
+                name = '8000Hz.wave' 
+                playSound(name)
+                Rx_Signal = recordAudio.recordAudio(duration*1.2)
+                cwProcessing.cwProcessing(Rx_Signal)
 
-          cwProcessing.cwProcessing(Rx_Signal)
+                return render_template("results.html",results = results)
           
-          return render_template("results.html",results = results)
-      
-      elif mode == 'Continuous Technical':
-          
-          frequency = float(request.form["frequency"])
-          duration = float(request.form["duration"])
-          
-          waveGenerator.waveGenerator(duration, frequency)
-          name = str(int(frequency)) + 'Hz.wave'
-          playSound(name)
-          
-          return render_template("results.html",results = results)
-      
-      elif mode == 'Pulse Doppler Non-Technical':
-          
-          rangeU = float(request.form["rangeU"])
-          
-          Tx_Signal, Tx_p = waveGenerator.pulseTrainGenerator(rangeU)
-          
-          name = 'Chirp 8000Hz.wave'
+            elif mode == 'Continuous Technical':
+              
+                frequency = float(request.form["frequency"])
+                duration = float(request.form["duration"])
 
-          playSound(name)
+                waveGenerator.waveGenerator(duration, frequency)
+                name = str(int(frequency)) + 'Hz.wave'
+                playSound(name)
+                Rx_Signal = recordAudio.recordAudio(duration*1.2)
+                cwProcessing.cwProcessing(Rx_Signal,frequency)
+              
+                return render_template("results.html",results = results)
           
-          return render_template("results.html",results = results)
-      
-      elif mode == 'Pulse Doppler Technical':
+            elif mode == 'Pulse Doppler Non-Technical':
+              
+                rangeU = float(request.form["rangeU"])
+
+                Tx_Signal, Tx_p = waveGenerator.pulseTrainGenerator(rangeU)
+
+                name = 'Chirp 8000Hz.wave'
+
+                playSound(name)
+
+                return render_template("results.html",results = results)
           
-          rangeU = request.form["rangeU"]
-          resolution = request.form["resolution"]
-          frequency = request.form["frequency"]
-          bandwidth = request.form["bandwidth"]
-          pulses = request.form["pulses"]
+            elif mode == 'Pulse Doppler Technical':
+              
+                rangeU = request.form["rangeU"]
+                resolution = request.form["resolution"]
+                frequency = request.form["frequency"]
+                bandwidth = request.form["bandwidth"]
+                pulses = request.form["pulses"]
+
+                Tx_Signal, Tx_p = waveGenerator.pulseTrainGenerator(rangeU,resolution,frequency,bandwidth,pulses)
+
+                name = 'Chirp ' + str(int(frequency)) + 'Hz.wave'
+
+                playSound(name)
+
+                return render_template("results.html",results = results)
+              
+            else:
+              
+                return render_template("none.html")
           
-          Tx_Signal, Tx_p = waveGenerator.pulseTrainGenerator(rangeU,resolution,frequency,bandwidth,pulses)
-          
-          name = 'Chirp ' + str(int(frequency)) + 'Hz.wave'
-          
-          playSound(name)
-          
-          return render_template("results.html",results = results)
-          
-      else:
-          
-          return render_template("none.html")
-          
-      
+        except:
+            return render_template("none.html")
           
       
 
