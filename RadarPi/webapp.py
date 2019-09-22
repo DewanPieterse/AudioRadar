@@ -69,12 +69,14 @@ def results():
             elif mode == 'Pulse Doppler Non-Technical':
               
                 rangeU = float(request.form["rangeU"])
-
+                
                 Tx_Signal, Tx_p = waveGenerator.pulseTrainGenerator(rangeU)
-
                 name = 'Chirp 8000Hz.wave'
-
                 playSound(name)
+                
+                duration = 32 * ((2 * rangeU) / 343)
+                Rx_Signal = recordAudio.recordAudio(duration*1.2)
+                pdProcessing.pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU)
 
                 return render_template("results.html",results = results)
           

@@ -24,10 +24,10 @@ def cwProcessing(Rx_Signal, frequency=8000):
     N = len(y)
     # sample spacing
     T = 1.0 / 44100
-    x = np.linspace(0.0, N*T, N)
+    t = np.linspace(0.0, N*T, N)
     
     fig, (ax1, ax2) = plt.subplots(nrows=2)
-    ax1.plot(x, y)
+    ax1.plot(t, y)
     Pxx, freqs, bins, im = ax2.specgram(y, NFFT=16384, Fs=44100, noverlap=1000)
     plt.ylim((f1+(frequency*0.04), f2-(frequency*0.04)))   # set the ylim to bottom, top
     # The `specgram` method returns 4 objects. They are:
