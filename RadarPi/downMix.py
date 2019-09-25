@@ -2,7 +2,7 @@
 
 import numpy as np
 import cmath
-import scipy.signal as signal
+import scipy.signal
 
 def downMix(ts,B,fc,signal,time):
     # This function takes in sampling time, bandwidth of the chirp, center
@@ -13,14 +13,16 @@ def downMix(ts,B,fc,signal,time):
     pi = np.pi
     
     [numtaps, f] = 101, (fc + B/2)
-    coeffsLowPass = signal.firwin(numtaps, [f1, f2], pass_zero=False, fs=fs)#, window = "hamming")
+    coeffsLowPass = scipy.signal.firwin(numtaps, f, pass_zero=False, fs=fs)#, window = "hamming")
     
     # I channel
-    I_tp = signal * cos(2 * pi * fc * time)
-    I_tp_LPF = signal.convolve(I_tp, coeffsLowPass)
+    print((signal.shape))
+    print((time.shape))
+    I_tp = signal * np.cos((2 * pi * fc) * time)
+    I_tp_LPF = scipy.signal.convolve(I_tp, coeffsLowPass)
 
     # Q channel
-    Q_tp = signal * -sin(2 * pi * fc * time)
-    Q_tp_LPF = signal.convolve(Q_tp, coeffsLowPass)
+    Q_tp = signal * -np.sin((2 * pi * fc )* time)
+    Q_tp_LPF = scipy.signal.convolve(Q_tp, coeffsLowPass)
 
-    return complex(I_tp_LPF ,Q_tp_LPF)
+    return I_tp_LPF + 1j*Q_tp_LPF

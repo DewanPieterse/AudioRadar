@@ -3,8 +3,9 @@
 import numpy as np
 import scipy.signal as signal
 import cmath
+from scipy.fftpack import fft
 
-def window(RxSignalMatrix):
+def hamming(RxSignalMatrix):
 
     # This function takes in a Matrix of the 
     # radar to perform windowing and FFT in slow time. The Matrix is also
@@ -26,9 +27,9 @@ def window(RxSignalMatrix):
 #     RangeMatrix_Windowed = RxSignalMatrix .* Window;        % Window with W
     
 
-    RangeMatrix_Window_PhaseLeak = RxSignalMatrix .* np.conj(phaseLeakageMatrix) .* Window;
+    RangeMatrix_Window_PhaseLeak = RxSignalMatrix * np.conj(phaseLeakageMatrix) * Window
     
-    RangeMatrix = fft(RangeMatrix_Window_PhaseLeak, [], 1); % FFT windowed/phaseLeakage funtion
+    RangeMatrix = fft(RangeMatrix_Window_PhaseLeak, axis=2) # FFT windowed/phaseLeakage funtion FAST TIME
     
 #     RangeMatrix = fftshift(RangeMatrix_FFT, 1);             
 #     FFT Shift result for display - Display not necessary now

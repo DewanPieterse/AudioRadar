@@ -63,7 +63,7 @@ def pulseTrainGenerator(unambigRange, resolution=0.05, frequency=8000, bandwidth
 
     wavfile.write(name, fs, Tx_Signal)
     
-    return Tx_Signal, Tx_p
+    return Tx_Signal, y
 
 
 def pulseGenerator(duration, frequency=8000, bandwidth=2000):

@@ -56,6 +56,6 @@ def cwProcessing(Rx_Signal, frequency=8000):
     name = './static/assets/img/image5.png'
 #     plt.grid()
     plt.savefig(name)
-    plt.show()
+#     plt.show()
 
-cwProcessing('./static/recordedAudio.wave',11000)
+# cwProcessing('./static/recordedAudio.wave',10000)
