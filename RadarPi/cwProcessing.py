@@ -26,10 +26,21 @@ def cwProcessing(Rx_Signal, frequency=8000):
     T = 1.0 / 44100
     t = np.linspace(0.0, N*T, N)
     
-    fig, (ax1, ax2) = plt.subplots(nrows=2)
-    ax1.plot(t, y)
-    Pxx, freqs, bins, im = ax2.specgram(y, NFFT=16384, Fs=44100, noverlap=1000)
+#     fig, (ax1, ax2) = plt.subplots(nrows=2)
+#     ax1.plot(t, y)
+#     Pxx, freqs, bins, im = ax2.specgram(y, NFFT=16384, Fs=44100, noverlap=1000)
+#     plt.ylim((f1+(frequency*0.04), f2-(frequency*0.04)))   # set the ylim to bottom, top
+    
+    
+    Pxx, freqs, bins, im = plt.specgram(y, NFFT=16384, Fs=44100, noverlap=1000)
+#     plt.plot(Pxx)
     plt.ylim((f1+(frequency*0.04), f2-(frequency*0.04)))   # set the ylim to bottom, top
+    plt.xlim(0, bins[-1])
+#     print(bins[-1])
+    plt.title('Spectrogram')
+    plt.xlabel('Time [s]')
+    plt.ylabel('Frequency [Hz]')
+    
     # The `specgram` method returns 4 objects. They are:
     # - Pxx: the periodogram
     # - freqs: the frequency vector
