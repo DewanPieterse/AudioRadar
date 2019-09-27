@@ -79,7 +79,7 @@ def results():
             Tx_Signal, Tx_p = waveGenerator.pulseTrainGenerator(rangeU)
             name = 'Chirp 8000Hz.wave'
             
-            duration = 32 * ((2 * rangeU) / 343)
+            duration = 32 * ((2 * rangeU) / 343) #PRI
             playSound(name)
             Rx_Signal = recordAudio.recordAudio(duration*1.2)
             

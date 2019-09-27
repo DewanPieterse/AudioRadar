@@ -19,17 +19,23 @@ def hamming(RxSignalMatrix):
     n = RxSignalMatrix.shape[0]                           # RxSignalMatrix is a matrix nxm (NumPulses)
     m = RxSignalMatrix.shape[1]                           # We want to reproduce that but windowed.
     h = signal.hamming(n)
-    Window = np.matlib.repmat(h, 1, m)
+    Window = np.transpose(np.matlib.repmat(h, m, 1))
+#     print(n,m)
+#     print(RxSignalMatrix.shape,Window.shape)
     
-    phaseLeakageVector = np.angle(RxSignalMatri[ : , 1])     # First column of received matrix
-    phaseLeakageMatrix = np.matlib.repmat(phaseLeakageVector, 1, m)  # Reproduce the phase leakage correction matrix
+    phaseLeakageVector = np.angle(RxSignalMatrix[ : , 1])     # First column of received matrix
+#     print(phaseLeakageVector.shape)
+    phaseLeakageMatrix = np.transpose(np.matlib.repmat(phaseLeakageVector, m, 1))  # Reproduce the phase leakage correction matrix
+#     print(phaseLeakageMatrix.shape)
     
 #     RangeMatrix_Windowed = RxSignalMatrix .* Window;        % Window with W
     
 
     RangeMatrix_Window_PhaseLeak = RxSignalMatrix * np.conj(phaseLeakageMatrix) * Window
     
-    RangeMatrix = fft(RangeMatrix_Window_PhaseLeak, axis=2) # FFT windowed/phaseLeakage funtion FAST TIME
+    RangeMatrix = fft(RangeMatrix_Window_PhaseLeak, axis=0) # FFT windowed/phaseLeakage funtion FAST TIME
     
 #     RangeMatrix = fftshift(RangeMatrix_FFT, 1);             
 #     FFT Shift result for display - Display not necessary now
+
+    return RangeMatrix 
