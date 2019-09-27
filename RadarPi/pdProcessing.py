@@ -27,13 +27,13 @@ def pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, band
 
     # Complex Downmixing of Transmit Pulse and Received Signal
     ts = 1/fs
-    N = len(Tx_p)
+    N = len(Tx_p)    
     
-    time_tp = np.arange(0, N*ts, ts)
+    time_tp = (np.arange(0, N)) * ts
     tp = downMix(ts, bandwidth, fc, Tx_p, time_tp)          # Complex downmix and LPF Transmit Pulse
 
     time_rs = np.linspace(0.0, ts, len(audio)*ts)
-    r = downMix(ts, bandwidth, fc, audio, time_rs)      # Complex downmix and LPF Received Signal
+    r = downMix(ts, bandwidth, fc, y, time_rs)      # Complex downmix and LPF Received Signal
     
     
     RangeLine = matchedFilter(tp, r)
@@ -48,12 +48,13 @@ def pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, band
 #     name = './static/assets/img/image5.png'
 #     plt.savefig(name)
 #     plt.show()
-    
-    NumCols_RxSignalMatrix = RxSignalMatrix.shape[1]
-    t_new = np.linspace(0.0, ts, NumCols_RxSignalMatrix * ts)
-    RangeLineAxis_New = t_new * c / 2
+
     Rx_Signal_Matrix = np.reshape(RangeLine, (len(RangeLine)/numPulses, numPulses)) # C-like index ordering
     Rx_Signal_Matrix_Window = hamming(Rx_Signal_Matrix)
+    
+    NumCols_RxSignalMatrix = Rx_Signal_Matrix_Window.shape[1]
+    t_new = np.linspace(0.0, ts, NumCols_RxSignalMatrix * ts)
+    RangeLineAxis_New = t_new * c / 2
     
     DopplerFreqAxis = np.linspace(-N/2, 1, (N/2)) * PRF/N  # Axis for Doppler Freq y
     VelocityAxis = DopplerFreqAxis * lamda / 2      # Axis for velocity y
