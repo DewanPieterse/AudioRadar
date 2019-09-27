@@ -119,7 +119,6 @@ if mod((length(RangeLine)/NumPulses), 1) ~= 0
 end
  
 RxSignalMatrix = transpose(reshape(RangeLine,  (size(RangeLine,2)/NumPulses), NumPulses));
-% RxSignalMatrix = transpose(reshape(RangeLine,  size(Rx_Signal,2)/NumPulses, NumPulses));
 
 NumCols_RxSignalMatrix = size(RxSignalMatrix, 2);
 t_new = (0:1:(NumCols_RxSignalMatrix-1)) * ts;
