@@ -10,7 +10,6 @@ from downMix import downMix
 from matchedFilter import matchedFilter
 from window import hamming
 
-
 def pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, bandwidth=4000):
     
     c = 343
@@ -21,6 +20,9 @@ def pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, band
     input_data = read(Rx_Signal)
     audio = input_data[1]
     fs = input_data[0]
+    
+#     plt.plot(audio)
+#     plt.show()
     
     [numtaps, f1, f2] = 101, (fc-(bandwidth/2)*1.02), (fc+(bandwidth/2)*1.02)
     coeffsBandPass = signal.firwin(numtaps, [f1, f2], pass_zero=False, fs=fs)#, window = "hamming")
@@ -62,16 +64,19 @@ def pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, band
     t_new = np.linspace(0.0, ts, NumCols_RxSignalMatrix * ts)
     RangeLineAxis_New = t_new * c / 2
     
-    DopplerFreqAxis = np.linspace(-N/2, 1, (N/2)) * PRF/N  # Axis for Doppler Freq y
-    print(DopplerFreqAxis)
+    DopplerFreqAxis = np.arange(-PRF/2, PRF/2, PRF/N)      # Axis for Doppler Freq y
+#     DopplerFreqAxis = np.linspace(-N/2, 1, (N/2)) * PRF/N
+#     print(DopplerFreqAxis.shape)
     VelocityAxis = DopplerFreqAxis * lamda / 2      # Axis for velocity y
     RangeLineAxis_New = t_new * c / 2               # Range Axis for x
 
-    RangeDopplerMatrix = fftshift(fft(Rx_Signal_Matrix_Window, axis=0))
+    RangeDopplerMatrix = fftshift(fft(Rx_Signal_Matrix_Window,axis=1))
     
-#     plt.plot(RangeLineAxis_New, RangeDopplerMatrix)
-#     plt.ylabel('Doppler Frequency [Hz]')
-    plt.plot(VelocityAxis, RangeDopplerMatrix)
+    matrix = 20*np.log10(np.abs(RangeDopplerMatrix))
+    
+    plt.figure(figsize=(10,2))
+    
+    plt.matshow(matrix, aspect='auto',cmap='RdBu')
     plt.ylabel('Velocity [m/s]')
     
     plt.colorbar()

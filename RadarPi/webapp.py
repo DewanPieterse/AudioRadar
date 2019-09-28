@@ -80,8 +80,9 @@ def results():
             name = 'Chirp 8000Hz.wave'
             
             duration = 32 * ((2 * rangeU) / 343) #PRI
+#             print(duration)
             playSound(name)
-            Rx_Signal = recordAudio.recordAudio(duration*1.2)
+            Rx_Signal = recordAudio.recordAudio(duration*2)
             
             pdProcessing.pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU)
 
