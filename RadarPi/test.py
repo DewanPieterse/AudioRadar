@@ -104,20 +104,7 @@ RangeDopplerMatrix = fftshift(fft(Rx_Signal_Matrix_Window,axis=1))
 # print('RangeDopplerMatrix\t',RangeDopplerMatrix.shape)
 matrix = 20*np.log10(np.abs(RangeDopplerMatrix))
 
-plt.imshow(20*np.log10(np.abs(matrix)), aspect='auto', extent = [0 , rangeU, numPulses , 0], cmap=plt.cm.get_cmap('RdBu', 10))
+plt.imshow(20*np.log10(np.abs(matrix)), aspect='auto', extent = [0 , rangeU, numPulses , 0], cmap=plt.cm.get_cmap('RdBu', 20))
 plt.colorbar(extend='both')
 # plt.clim(-10,20)
 plt.show()
-
-# plt.figure(figsize=(10,2))
-# 
-# plt.matshow(matrix, aspect='auto',cmap='RdBu')
-# plt.ylabel('Velocity [m/s]')
-# 
-# plt.colorbar()
-# plt.xlabel('Range [m]')
-# plt.title('Velocity vs Range')
-# name = './static/assets/img/image5.png'
-# plt.savefig(name)
-plt.show()
-
