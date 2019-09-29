@@ -9,7 +9,7 @@
 % test2 = load ('withoutAmp.mat');
 % test2 = test2.unnamed;
 
-test1 = Rx_Signal;
+test1 = data;
 
 fs = 44.1e3; % Sampling frequency
 ts = 1/fs; % Sampling period

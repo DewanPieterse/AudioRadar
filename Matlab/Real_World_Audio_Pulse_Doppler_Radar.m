@@ -12,11 +12,11 @@ clear all; close all; clc;
 % Radar parameters
 
 fc = 8e3;                           % Center Frequency [Hz]
-B = 6e3;                            % Bandwidth [Hz] 
+B = 4e3;                            % Bandwidth [Hz] 
 T = 100/B;                          % Pulse length in [s]                       T < PRI/2
 UnambigRange = 10;                   % Unambiguous Range [m] (0.5 - 10)
 RangeResolution = 0.5;              % Range Resolution [m]  (0.05 - 2)
-NumPulses = 67;                     % Number of pulses      (typically 32)
+NumPulses = 32;                     % Number of pulses      (typically 32)
 
 c = 343;                            % speed of sound [m/s]
 PRI = (2 * UnambigRange) / c;       % Pulse Repetition Interval [s]
@@ -95,7 +95,7 @@ RangeLine = matchedFilter(tp, r);
 % Cut off the excess signal to just capture the peaks
 
 [pks, locs] = findpeaks(abs(RangeLine), 'MinPeakDistance', (PRI/2) * ts, 'MinPeakHeight', 40);
-start = locs(4);
+start = locs(1);
 last = locs(end);
 RangeLine = RangeLine(1, start : ceil(last + (5 * T * ts)));
 
@@ -124,14 +124,14 @@ NumCols_RxSignalMatrix = size(RxSignalMatrix, 2);
 t_new = (0:1:(NumCols_RxSignalMatrix-1)) * ts;
 RangeLineAxis_New = t_new * c / 2;
 
-% figure('Color','white'); 
-% imagesc( RangeLineAxis_New_m,1:NumPulses, 20*log10(abs(RxSignalMatrix)));
-% xlabel('Range (m)', 'fontsize', 12);
-% ylabel('Number of pulses', 'fontsize', 12); 
-% title('Simulated Range Line', 'fontsize', 12);
-% grid on;
-% colorbar;
-% colormap('jet');
+figure('Color','white'); 
+imagesc( RangeLineAxis_New,1:NumPulses, 20*log10(abs(RxSignalMatrix)));
+xlabel('Range (m)', 'fontsize', 12);
+ylabel('Number of pulses', 'fontsize', 12); 
+title('Simulated Range Line', 'fontsize', 12);
+grid on;
+colorbar;
+colormap('jet');
 
 
 %% Window the Received signal and apply FFT in slow time
