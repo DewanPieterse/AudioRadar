@@ -10,6 +10,7 @@ def playSound(fileName):
     file = '/home/pi/Documents/RadarPi/static/' + fileName
 #     time.sleep(1)
     sound = pygame.mixer.Sound(file) # Load the sounds
+    sound.set_volume(0.075)
     sound.play()
     
 #     os.system(file)
