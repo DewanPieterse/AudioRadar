@@ -10,7 +10,7 @@ from downMix import downMix
 from matchedFilter import matchedFilter
 from window import hamming
 
-def pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, bandwidth=4000):
+def pdProcessing(Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, bandwidth=4000):
     
     c = 343
     lamda = c/fc
@@ -18,11 +18,9 @@ def pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, band
     PRF = 1/PRI
     # read audio samples
     input_data = read(Rx_Signal)
-    audio = input_data[1]
+    audio = np.transpose(input_data[1])
+    print(audio.shape)
     fs = input_data[0]
-    
-#     plt.plot(audio)
-#     plt.show()
     
     [numtaps, f1, f2] = 101, (fc-(bandwidth/2)*1.02), (fc+(bandwidth/2)*1.02)
     coeffsBandPass = signal.firwin(numtaps, [f1, f2], pass_zero=False, fs=fs)#, window = "hamming")

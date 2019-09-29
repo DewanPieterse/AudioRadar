@@ -6,6 +6,7 @@ import cwProcessing
 import pdProcessing
 from playSound import playSound
 from flask import Flask, render_template, request
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
@@ -84,7 +85,7 @@ def results():
             playSound(name)
             Rx_Signal = recordAudio.recordAudio(duration*2)
             
-            pdProcessing.pdProcessing(Tx_Signal, Tx_p, Rx_Signal, rangeU)
+            pdProcessing.pdProcessing(Tx_p, Rx_Signal, rangeU)
 
             return render_template("results.html",results = results)
       
