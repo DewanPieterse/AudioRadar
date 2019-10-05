@@ -8,6 +8,7 @@
     <title>Pulse Doppler | RadarPi</title>
     <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="static/assets/fonts/Montserrat/stylesheet.css"  type="text/css">
     <link rel="stylesheet" href="static/assets/fonts/material-icons.min.css">
     <link rel="stylesheet" href="static/assets/fonts/typicons.min.css">
     <link rel="stylesheet" href="static/assets/css/untitled.css">
@@ -36,11 +37,13 @@
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">Pulse Doppler Radar:&nbsp;Non-Technical</h2>
-                    <p class="text-left">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                    <p class="text-left">This radar method is used to measure the range to objects and walls. That means the distance from the radar. </p>
+                    <p class="text-left" style="padding-top:15px;">You should specify the maximum size of the room and the volume.</p>
                 </div>
                 <form action = "http://RadarPi.local:8080/results.html" method = "POST">
                     <div class="form-group"><label for="readonly">Mode</label><input class="form-control" type="text" name="mode" placeholder="Pulse Doppler Non-Technical" value="Pulse Doppler Non-Technical" readonly></div>
                     <div class="form-group"><label>Range</label><input class="form-control" type="number" name="rangeU" placeholder="5m - 15m"></div>
+                    <div class="form-group"><label>Volume</label><input class="form-control" type="number" name="volume" step="0.01" placeholder="1.00 min - 100 max" min="1" max="100"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
                 </form>
             </div>
