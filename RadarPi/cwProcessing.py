@@ -15,14 +15,15 @@ def cwProcessing(Rx_Signal, frequency=8000):
     fs = input_data[0]
     
     # Bandpass filter
-    [numtaps1, f1, f2] = 101, (frequency-frequency*0.075), (frequency+frequency*0.075)
+    [numtaps1, f1, f2] = 1001, (frequency-frequency*0.075), (frequency+frequency*0.075)
     coeffsBandPass = signal.firwin(numtaps1, [f1, f2], pass_zero=False, fs=fs)#, window = "hamming")
     y_BP = signal.convolve(audio, coeffsBandPass)
     
     # Notch filter
-    [numtaps, f1, f2] = 101, (frequency-10), (frequency+10)
+    [numtaps, f1, f2] = 1001, (frequency-10), (frequency+10)
     coeffsNotch = signal.firwin(numtaps, [f1, f2], pass_zero=False, fs=fs)#, window = "hamming")
     y = signal.convolve(y_BP, coeffsNotch)
+#     y = signal.lfilter(numtaps,1,y_BP)
 
     # Number of sample points
     N = len(y)
@@ -35,7 +36,7 @@ def cwProcessing(Rx_Signal, frequency=8000):
     plt.title('Spectrogram')
     plt.xlabel('Time [s]')
     plt.ylabel('Frequency [Hz]')
-    plt.colorbar()
+#     plt.colorbar()
 
     name = './static/assets/img/image5.png'
     plt.savefig(name)

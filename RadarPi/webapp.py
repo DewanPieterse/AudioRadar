@@ -86,7 +86,7 @@ def results():
             duration = 32 * ((2 * rangeU) / 343) #PRI
 #             print(duration)
             playSound(name,volume)
-            Rx_Signal = recordAudio.recordAudio(duration*2)
+            Rx_Signal = recordAudio.recordAudio(duration*1.2)
             
             pdProcessing.pdProcessing(Tx_p, Rx_Signal, rangeU)
 

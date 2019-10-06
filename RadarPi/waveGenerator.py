@@ -1,7 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import numpy as np
 import matplotlib.pyplot as plt
+import os
 #from scipy import signal
 from scipy.io import wavfile
 #from rect import rect
@@ -15,7 +16,14 @@ def waveGenerator(duration, frequency=8000):
         
     y = np.int16(np.sin(frequency * 2 * np.pi * t) * 32767)
     
-    name = './static/' + str(int(frequency)) + 'Hz.wave'
+    # Path 
+    path = "/home/pi/Documents/RadarPi"
+  
+    # Join various path components  
+    name = (os.path.join(path, "static", (str(int(frequency)) + 'Hz.wave'))) 
+    
+#     name = '/home/pi/Documents/RadarPi/static/' + str(int(frequency)) + 'Hz.wave'
+#     name = str(int(frequency)) + 'Hz.wave'
     
     #y = np.int8(y)
     
@@ -59,7 +67,7 @@ def pulseTrainGenerator(unambigRange, resolution=0.05, frequency=8000, bandwidth
     Tx_Signal = np.tile(pulsePadded, numPulses)
     Tx_p = np.pad(pulsePadded, (0, (len(Tx_Signal)-len(pulsePadded))), 'constant')    
     
-    name = './static/Chirp ' + str(int(frequency)) + 'Hz.wave' 
+    name = '/home/pi/Documents/RadarPi/static/Chirp ' + str(int(frequency)) + 'Hz.wave' 
 
     wavfile.write(name, fs, Tx_Signal)
     
