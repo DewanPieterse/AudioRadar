@@ -9,7 +9,7 @@
 % test2 = load ('withoutAmp.mat');
 % test2 = test2.unnamed;
 
-test1 = data;
+test1 = y;
 
 fs = 44.1e3; % Sampling frequency
 ts = 1/fs; % Sampling period
@@ -59,7 +59,7 @@ title('MAX9814 Microphone - No Amp');
 
 %%
 
-[y,Fs] = audioread('recordedAudio.wave');
+[y,Fs] = audioread('recordedAudio copy.wave');
 sound(y,Fs)
 
 t = 0:seconds(1/Fs):seconds(info.Duration);

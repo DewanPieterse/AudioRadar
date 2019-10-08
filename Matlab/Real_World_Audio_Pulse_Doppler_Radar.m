@@ -16,7 +16,7 @@ B = 4e3;                            % Bandwidth [Hz]
 T = 100/B;                          % Pulse length in [s]                       T < PRI/2
 UnambigRange = 10;                   % Unambiguous Range [m] (0.5 - 10)
 RangeResolution = 0.5;              % Range Resolution [m]  (0.05 - 2)
-NumPulses = 32;                     % Number of pulses      (typically 32)
+NumPulses = 35;                     % Number of pulses      (typically 32)
 
 c = 343;                            % speed of sound [m/s]
 PRI = (2 * UnambigRange) / c;       % Pulse Repetition Interval [s]
@@ -67,7 +67,7 @@ Rx_Signal = (getaudiodata(recordObject));      % Store recorded audio from objec
 Rx_Signal = bandpass(Rx_Signal, [(fc - B/2) (fc + B/2)], fs, 'ImpulseResponse', 'fir', 'Steepness', 0.95);
 Rx_Signal = transpose(Rx_Signal);
 
-%% Plot Rx_Signal
+% Plot Rx_Signal
 
 time_s = 0: ts: (size(Rx_Signal, 2) - 1) * ts;
 
