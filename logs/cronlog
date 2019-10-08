@@ -1,0 +1,11 @@
+pygame 1.9.4.post1
+Hello from the pygame community. https://www.pygame.org/contribute.html
+ * Serving Flask app "webapp" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 338-119-410

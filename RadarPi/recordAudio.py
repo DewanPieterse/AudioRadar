@@ -1,6 +1,7 @@
 import pyaudio
 import wave
 import time
+import os
 
 def recordAudio(seconds):
 
@@ -10,7 +11,12 @@ def recordAudio(seconds):
     chunk = 4096 # 2^12 samples for buffer
     record_secs = seconds # seconds to record
     dev_index = 0 # device index found by p.get_device_info_by_index(ii)
-    wav_output_filename = './static/recordedAudio.wave' # name of .wav file
+    # Path 
+    path = "/home/pi/Documents/RadarPi"
+  
+    # Join various path components  
+    wav_output_filename = (os.path.join(path, "static", "recordedAudio.wave")) 
+#     wav_output_filename = './static/recordedAudio.wave' # name of .wav file
 
     audio = pyaudio.PyAudio() # create pyaudio instantiation
 
