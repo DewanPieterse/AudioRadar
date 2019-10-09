@@ -14,8 +14,8 @@ clear all; close all; clc;
 fc = 8e3;                           % Center Frequency [Hz]
 B = 4e3;                            % Bandwidth [Hz] 
 T = 100/B;                          % Pulse length in [s]                       T < PRI/2
-UnambigRange = 10;                   % Unambiguous Range [m] (0.5 - 10)
-RangeResolution = 0.5;              % Range Resolution [m]  (0.05 - 2)
+UnambigRange = 8;                   % Unambiguous Range [m] (0.5 - 10)
+RangeResolution = 0.05;              % Range Resolution [m]  (0.05 - 2)
 NumPulses = 35;                     % Number of pulses      (typically 32)
 
 c = 343;                            % speed of sound [m/s]
