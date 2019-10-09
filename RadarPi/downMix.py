@@ -12,18 +12,18 @@ def downMix(ts,B,fc,signal,time):
     fs = 1/ts
     pi = np.pi
     
-    [numtaps, f] = 101, (fc + B/2)
-    coeffsLowPass = scipy.signal.firwin(numtaps, f, pass_zero=False, fs=fs)#, window = "hamming")
+    [numtaps, f] = 10001, (fc + B/2)
+    coeffsLowPass = scipy.signal.firwin(numtaps, f, pass_zero=True, fs=fs)#, window = "hamming")
     
     # I channel
-    cos = np.cos(2 * pi * fc) * time
+    cos = np.cos(2 * pi * fc * time)
     
-    I_tp = np.multiply(signal, np.transpose(cos))
+    I_tp = signal * np.transpose(cos)
     I_tp_LPF = scipy.signal.convolve(I_tp, coeffsLowPass)
 
     # Q channel
-    sin = -np.sin(2 * pi * fc ) * time
-    Q_tp = np.multiply(signal, np.transpose(sin))
+    sin = -np.sin(2 * pi * fc * time)
+    Q_tp = signal * np.transpose(sin)
     Q_tp_LPF = scipy.signal.convolve(Q_tp, coeffsLowPass)
     
 #     print(np.iscomplex(I_tp_LPF + (1j * Q_tp_LPF)))

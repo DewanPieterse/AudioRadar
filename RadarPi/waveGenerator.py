@@ -49,7 +49,7 @@ def pulseTrainGenerator(unambigRange, resolution=0.05, frequency=8000, bandwidth
     c = 343                            # speed of sound [m/s]
     PRI = (2 * UnambigRange) / c       # Pulse Repetition Interval [s]
     #PulseCompressionGain = T * B       # Pulse Compression needs to be higher than 100 to ensure 13dB between sidelobe and mainlobe.
-    B = c / (2 * resolution)
+#     B = c / (2 * resolution)
     fs = 44100                         # Sampling rate by soundcard [Hz]
     ts = 1/fs                          # Sampling period [s]
     #PRF = 1/PRI                        # Hz
@@ -63,9 +63,9 @@ def pulseTrainGenerator(unambigRange, resolution=0.05, frequency=8000, bandwidth
     y = pulseGenerator(T,fc,B)
 #     print(len(t))
 #     print(len(y))
-    pulsePadded = np.pad(y, (0,(len(t)-len(y))), 'constant')
-    Tx_Signal = np.tile(pulsePadded, numPulses)
-    Tx_p = np.pad(pulsePadded, (0, (len(Tx_Signal)-len(pulsePadded))), 'constant')    
+    pulsePadded = np.pad(y, (0,int(len(t)-len(y))), 'constant')
+    Tx_Signal = np.tile(pulsePadded, int(numPulses))
+    Tx_p = np.pad(pulsePadded, (0, (len(Tx_Signal)-len(pulsePadded))), 'constant')
     
     name = '/home/pi/Documents/RadarPi/static/Chirp ' + str(int(frequency)) + 'Hz.wave' 
 
@@ -90,3 +90,5 @@ def pulseGenerator(duration, frequency=8000, bandwidth=2000):
 #     wavfile.write(name, fs, y)
     
     return y
+
+# pulseTrainGenerator(5, resolution=1, frequency=12000, bandwidth=3000, numPulses=16)

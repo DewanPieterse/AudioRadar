@@ -41,12 +41,12 @@
                     <p class="text-left" style="padding-top:15px;">You should specify the maximum size of the room, range resolution, frequency, bandwidth, number of pulses, and the volume. Note that this is for advanced users only since the radar might not operate as expected given certain parameters.</p>
                 </div>
                 <form action = "http://RadarPi.local:8080/results.html" method = "POST">
-                    <div class="form-group"><label for="readonly">Mode</label><input class="form-control" type="text" name="mode" placeholder="Pulse Doppler Non-Technical" value="Pulse Doppler Non-Technical" readonly></div>
-                    <div class="form-group"><label>Range Resolution</label><input class="form-control" type="number" name="resolution" step="0.01" placeholder="0.05m - 1m"></div>
-                    <div class="form-group"><label>Range</label><input class="form-control" type="number" name="rangeU" placeholder="5m - 15m"></div>
-                    <div class="form-group"><label>Frequency</label><input class="form-control" type="number" name="frequency" placeholder="5000Hz - 15000Hz"></div>
-                    <div class="form-group"><label>Bandwidth</label><input class="form-control" type="number" name="bandwidth" placeholder="500Hz - 5000Hz"></div>
-                    <div class="form-group"><label>Number of Pulses</label><input class="form-control" type="number" name="pulses" placeholder="16 - 64"></div>
+                    <div class="form-group"><label for="readonly">Mode</label><input class="form-control" type="text" name="mode" placeholder="Pulse Doppler Technical" value="Pulse Doppler Technical" readonly></div>
+                    <div class="form-group"><label>Range Resolution</label><input class="form-control" type="number" name="resolution" step="0.01" placeholder="0.05m - 1m" min="0.05" max="2"></div>
+                    <div class="form-group"><label>Range</label><input class="form-control" type="number" name="rangeU" placeholder="5m - 15m" min="5" max="15"></div>
+                    <div class="form-group"><label>Frequency</label><input class="form-control" type="number" name="frequency" placeholder="5000Hz - 13000Hz" min="5000" max="13000"></div>
+                    <div class="form-group"><label>Bandwidth</label><input class="form-control" type="number" name="bandwidth" placeholder="3000Hz - 6000Hz" min="3000" max="6000"></div>
+                    <div class="form-group"><label>Number of Pulses</label><input class="form-control" type="number" name="pulses" placeholder="16 - 64" max="128"></div>
                     <div class="form-group"><label>Volume</label><input class="form-control" type="number" name="volume" step="0.01" placeholder="1.00 min - 100 max" min="1" max="100"></div>
                     <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Submit</button></div>
                 </form>

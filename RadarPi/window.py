@@ -31,7 +31,7 @@ def hamming(RxSignalMatrix):
 #     RangeMatrix_Windowed = RxSignalMatrix .* Window;        % Window with W
     
 
-    RangeMatrix_Window_PhaseLeak = RxSignalMatrix * np.conj(phaseLeakageMatrix) * Window
+    RangeMatrix_Window_PhaseLeak = RxSignalMatrix * Window * np.conj(phaseLeakageMatrix)
     
     RangeMatrix = fft(RangeMatrix_Window_PhaseLeak, axis=0) # FFT windowed/phaseLeakage funtion FAST TIME
     

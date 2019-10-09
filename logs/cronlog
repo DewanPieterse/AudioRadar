@@ -9,3 +9,113 @@ Hello from the pygame community. https://www.pygame.org/contribute.html
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 338-119-410
+192.168.17.132 - - [06/Oct/2019 15:09:12] "GET / HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:12] "GET /static/assets/bootstrap/css/bootstrap.min.css HTTP/1.1" 304 -
+192.168.17.132 - - [06/Oct/2019 15:09:12] "GET /static/assets/fonts/Montserrat/stylesheet.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:12] "GET /static/assets/fonts/typicons.min.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:12] "GET /static/assets/css/untitled.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:12] "GET /static/assets/js/jquery.min.js HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:12] "GET /static/assets/fonts/material-icons.min.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:12] "GET /static/assets/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:12] "GET /static/assets/js/theme.js HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:13] "GET /static/assets/fonts/MaterialIcons-Regular.woff2 HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:13] "GET /static/assets/fonts/typicons.woff HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:20] "GET /cwNT.html HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:21] "GET /static/assets/fonts/Montserrat/stylesheet.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:21] "GET /static/assets/fonts/material-icons.min.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:21] "GET /static/assets/fonts/typicons.min.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:21] "GET /static/assets/js/jquery.min.js HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:21] "GET /static/assets/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:21] "GET /static/assets/css/untitled.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:21] "GET /static/assets/js/theme.js HTTP/1.1" 200 -
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.front.0:CARD=0'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM front
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.rear
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.center_lfe
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.side
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM surround21
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.surround40.0:CARD=0'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM surround40
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM surround41
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM surround50
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.surround51.0:CARD=0'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM surround51
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.surround71.0:CARD=0'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM surround71
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM iec958
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'cards.RPi-simple.pcm.iec958.0:CARD=0,AES0=4,AES1=130,AES2=0,AES3=2'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5047:(snd_config_expand) Evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM spdif
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.hdmi
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.hdmi
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'defaults.bluealsa.device'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5036:(snd_config_expand) Args evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM bluealsa
+ALSA lib confmisc.c:1281:(snd_func_refer) Unable to find definition 'defaults.bluealsa.device'
+ALSA lib conf.c:4568:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
+ALSA lib conf.c:5036:(snd_config_expand) Args evaluate error: No such file or directory
+ALSA lib pcm.c:2565:(snd_pcm_open_noupdate) Unknown PCM bluealsa
+ALSA lib pcm_dmix.c:1043:(snd_pcm_dmix_open) The dmix plugin supports only playback stream
+ALSA lib pcm_dmix.c:1043:(snd_pcm_dmix_open) The dmix plugin supports only playback stream
+ALSA lib pcm_dmix.c:1108:(snd_pcm_dmix_open) unable to open slave
+ALSA lib pcm_dmix.c:1043:(snd_pcm_dmix_open) The dmix plugin supports only playback stream
+192.168.17.132 - - [06/Oct/2019 15:09:32] "POST /results.html HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:32] "GET /static/assets/fonts/Montserrat/stylesheet.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:32] "GET /static/assets/fonts/typicons.min.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:32] "GET /static/assets/css/untitled.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:32] "GET /static/assets/fonts/material-icons.min.css HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:32] "GET /static/assets/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:32] "GET /static/assets/img/image5.png HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:32] "GET /static/assets/js/jquery.min.js HTTP/1.1" 200 -
+192.168.17.132 - - [06/Oct/2019 15:09:32] "GET /static/assets/js/theme.js HTTP/1.1" 200 -
+ALSA lib pcm.c:8424:(snd_pcm_recover) underrun occurred
+ * Detected change in '/home/pi/Documents/RadarPi/cwProcessing.py', reloading
+pygame 1.9.4.post1
+Hello from the pygame community. https://www.pygame.org/contribute.html
+recording
+finished recording
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 219-581-943
+ * Detected change in '/home/pi/Documents/RadarPi/cwProcessing.py', reloading
+pygame 1.9.4.post1
+Hello from the pygame community. https://www.pygame.org/contribute.html
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 219-581-943
+pygame 1.9.4.post1
+Hello from the pygame community. https://www.pygame.org/contribute.html

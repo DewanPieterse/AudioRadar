@@ -22,10 +22,12 @@ def pdProcessing(Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, bandwidth=4000)
     audio = input_data[1]
     fs = input_data[0]
 
-    [numtaps, f1, f2] = 101, (fc-(bandwidth/2)*1.02), (fc+(bandwidth/2)*1.02)
+    [numtaps, f1, f2] = 10001, (fc-(bandwidth/2)*1.02), (fc+(bandwidth/2)*1.02)
     coeffsBandPass = signal.firwin(numtaps, [f1, f2], pass_zero=False, fs=fs)#, window = "hamming")
-    y = np.transpose(signal.convolve(audio, coeffsBandPass))
-    y = np.transpose(y)
+    y = (signal.convolve(audio, coeffsBandPass))
+    # print('y\t',y.shape)
+    # y = np.transpose(y)
+    # print('y\t',y.shape)
 
     # Complex Downmixing of Transmit Pulse and Received Signal
     ts = 1/fs
@@ -40,31 +42,44 @@ def pdProcessing(Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, bandwidth=4000)
 
     RangeLine = matchedFilter(tp, r)
 
-    timeRL = np.arange(0.0, len(RangeLine)*ts, ts)
-    RangeLineAxis = timeRL * c / 2
-    
-    m = int(len(RangeLine)/numPulses)
-    RangeLine = RangeLine[:(m*numPulses)]
+    peaks = signal.find_peaks(RangeLine,threshold=221,distance=1800)[0]
+#     print((peaks))
+    try:
+        start = peaks[3]
+        end = peaks[(3+numPulses)]
+        RangeLine = RangeLine[start: end]
+    except:
+#         start = peaks[0]
+#         end = peaks[(0+numPulses)]
+        RangeLine = RangeLine#[start: end]
 
-    Rx_Signal_Matrix = (np.reshape(RangeLine, (m, numPulses))) # C-like index ordering # np.transpose
+    plt.plot(20*np.log10(RangeLine))
+    plt.ylabel('Frequency [Hz]')
+    plt.xlabel('Range [m]')
+    plt.title('Recieved Signal')
+    plt.savefig('/home/pi/Desktop/testing.png')
+    plt.clf()
+
+    m = int(len(RangeLine)/numPulses)
+    RangeLine = RangeLine[:int(m*numPulses)]
+
+    Rx_Signal_Matrix = (np.reshape(RangeLine, (int(m), int(numPulses)))) # C-like index ordering # np.transpose
     Rx_Signal_Matrix_Window = hamming(Rx_Signal_Matrix)
 
-    NumCols_RxSignalMatrix = Rx_Signal_Matrix_Window.shape[1]
-    t_new = np.arange(0.0, NumCols_RxSignalMatrix * ts, ts)
-    RangeLineAxis_New = t_new * c / 2
-
-    DopplerFreqAxis = np.arange(-PRF/2, PRF/2, PRF/N)      # Axis for Doppler Freq y
-    VelocityAxis = DopplerFreqAxis * lamda / 2      # Axis for velocity y
-    RangeLineAxis_New = t_new * c / 2               # Range Axis for x
     RangeDopplerMatrix = fftshift(fft(Rx_Signal_Matrix_Window,axis=1))
     matrix = 20*np.log10(np.abs(RangeDopplerMatrix))
 
-    plt.imshow(matrix, aspect='auto', extent = [0 , rangeU, numPulses , 0], cmap='RdBu')
-    time.sleep(1)
-    plt.colorbar(extend='both')
+    # matrix[matrix < 172] = 160
+    # matrix[matrix > 179] = 190
+
+    plt.imshow(matrix, aspect='auto', extent = [0 , rangeU, numPulses , 0], cmap=plt.cm.get_cmap('seismic', 20))
+    plt.colorbar()
+#     plt.xlim(0,6.6)
+    plt.ylabel('Number of Pulses')
     plt.xlabel('Range [m]')
-    plt.title('Number of Pulses vs Range')
+    plt.title('Range Map')
+    # plt.clim(-10,20)
     name = './static/assets/img/image5.png'
     plt.savefig(name)
     time.sleep(0.5)
-#     plt.show()
+    plt.clf()
