@@ -53,12 +53,12 @@ def pdProcessing(Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, bandwidth=4000)
 #         end = peaks[(0+numPulses)]
         RangeLine = RangeLine#[start: end]
 
-    plt.plot(20*np.log10(RangeLine))
-    plt.ylabel('Frequency [Hz]')
-    plt.xlabel('Range [m]')
-    plt.title('Recieved Signal')
-    plt.savefig('/home/pi/Desktop/testing.png')
-    plt.clf()
+#     plt.plot(20*np.log10(RangeLine))
+#     plt.ylabel('Frequency [Hz]')
+#     plt.xlabel('Range [m]')
+#     plt.title('Recieved Signal')
+#     plt.savefig('/home/pi/Desktop/testing.png')
+#     plt.clf()
 
     m = int(len(RangeLine)/numPulses)
     RangeLine = RangeLine[:int(m*numPulses)]
@@ -74,7 +74,7 @@ def pdProcessing(Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, bandwidth=4000)
 
     plt.imshow(matrix, aspect='auto', extent = [0 , rangeU, numPulses , 0], cmap=plt.cm.get_cmap('seismic', 20))
     plt.colorbar()
-#     plt.xlim(0,6.6)
+    plt.xlim(0,9)
     plt.ylabel('Number of Pulses')
     plt.xlabel('Range [m]')
     plt.title('Range Map')

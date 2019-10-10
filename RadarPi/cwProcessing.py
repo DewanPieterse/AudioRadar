@@ -71,7 +71,7 @@ def cwProcessing(Rx_Signal, frequency=8000):
     Pxx, freqs, bins, im = plt.specgram(y, NFFT=16384, Fs=fs,noverlap=8092)#     plt.pcolormesh(Pxx)
     plt.ylim((f1+(frequency*0.05), f2-(frequency*0.05)))   # set the ylim to bottom, top
     
-    Pxx[Pxx < 25] = -50
+#     Pxx[Pxx < 25] = -50
 # # matrix[matrix > 179] = 190
 #     plt.xlim(0, bins[-1])
     plt.title('Spectrogram %i Hz' %frequency)
