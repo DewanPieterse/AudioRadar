@@ -66,15 +66,15 @@ def pdProcessing(Tx_p, Rx_Signal, rangeU, numPulses=32, fc=8000, bandwidth=4000)
     Rx_Signal_Matrix = (np.reshape(RangeLine, (int(m), int(numPulses)))) # C-like index ordering # np.transpose
     Rx_Signal_Matrix_Window = hamming(Rx_Signal_Matrix)
 
-    RangeDopplerMatrix = fftshift(fft(Rx_Signal_Matrix_Window,axis=1))
-    matrix = 20*np.log10(np.abs(RangeDopplerMatrix))
+    RangeDopplerMatrix = fftshift(fft(Rx_Signal_Matrix_Window, axis=0))#fftshift(fft(Rx_Signal_Matrix_Window,axis=1))
+    matrix = 20*np.log10(np.abs((RangeDopplerMatrix)))
 
     # matrix[matrix < 172] = 160
     # matrix[matrix > 179] = 190
 
     plt.imshow(matrix, aspect='auto', extent = [0 , rangeU, numPulses , 0], cmap=plt.cm.get_cmap('seismic', 20))
     plt.colorbar()
-    plt.xlim(0,9)
+#     plt.xlim(0,5.5)
     plt.ylabel('Number of Pulses')
     plt.xlabel('Range [m]')
     plt.title('Range Map')
