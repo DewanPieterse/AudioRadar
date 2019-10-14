@@ -1,0 +1,22 @@
+{\smallest\chapter*{Abstract}\label{chap:Abstract}}\addcontentsline{toc}{chapter}{Abstract}\\
+\hrule
+
+% type a summary that identifies the purpose, problem, methods, results, and conclusion of your work
+
+% [Explain the need/uses]
+
+To invoke interest in students at open days concerning radar systems, a short-range radar system which uses audio would be used as an entry point.
+
+Short-Range, Embedded, Audio Radar is an accessible and tangible radar system that can be used to spark the interest of school and university students alike. The small and portable form factor makes the project appealing for open days because it can easily be demonstrated. The radar system intends to be as affordable as possible using breakout boards that are readily available to increase the uptake of interest in radar systems as a whole.
+
+The report aims to develop an audio radar system using only off-the-shelf components to drive the cost down and to also be accessible to interested persons around the world. The project is completely open-source, using only open-source software in its implementation, breakout boards from local and international manufacturers and operated under GNU General Public License. 
+
+The radar has two methods in its implementation. The Continuous Wave radar, which plays out a constant tone of frequency set by the user, is used to measure radial velocity to- and from the radar. A spectrogram of the recorded sound is used to analyse the signal and display the relative velocity between a moving object and the radar over time. This method relies on the Doppler Effect.
+
+The radar also implements a Pulsed-Doppler radar. The system plays out multiple pulses consisting of a 'chirp' each. A chirp can be described as a linear increase in frequency throughout the pulse where the amount of frequency increase is the bandwidth. Matched filtering is used to match up the transmitted and the received signals. The output from the Pulsed-Doppler radar shows the velocity and the range of an object at a specific point in time.
+
+The continuous wave radar was found to be better suited towards objects moving at higher velocities. Pulsed-Doppler radar is limited to very low velocities but the range of the object is known more precisely. The output from both of the radar methods is only displayed to the user without any analysis of the data. The output figure, however, does offer to show the user a clear depiction of what happened during the sound output from the radar.
+
+Finally, this report shows the successful implementation of a small-scale, low-cost, educa- tional, audio radar system using only easily accessible parts and microcontrollers. The radar is easily reproducible anywhere in the world with comparable results.
+
+\newpage

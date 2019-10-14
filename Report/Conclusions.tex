@@ -1,0 +1,33 @@
+\chapter{Conclusions}\label{chap:Conclusions}
+
+After the results and discussion have been shown in Chapter \ref{chap:Results}, the following conclusions can be drawn.
+
+\section{Continuous Wave Radar}
+
+The tests conducted using the continuous wave radar to measure velocity proved to be extremely tough. The microphone with automatic gain picked up the quietest of noises and when the sound that is intended to be recorded presents itself, the MAX9814 chip is just too slow to respond. This was proven by using an over the counter microphone with the ADC and the spectrogram would improve but the results were so quiet that they were barely recognisable and not usable outdoors. The set up was under laboratory conditions with no ambient noises.
+
+Another major issue that the radar experienced was the poor resolution that was offered by the spectrogram by the Matplotlib package. The package allows for setting the number of FFTs that the function performs for a single spectrogram and this setting was set to $16384$ and the resolution did not improve dramatically. This was proven by using a over the counter microphone with the ADC and the spectrogram did not improve overall. A different package was also tested and \verb scipy.signal.fftpack  offered worse results.
+
+Overall, the radar does display some correlation to the real world where a significant increase in activity is visible to the end-user. However, the actual real velocity of the measured target is not clear. 
+
+\section{Pulsed-Doppler Radar}
+The tests conducted using the Pulsed-Doppler radar to measure the distance or range to a target proved to be a relative success. The distances in the results were obtained successfully although a lot of prior set up was required and the radar did not yield the results that were hoped for immediately. 
+
+The reasons for the difficult operation of the Pulsed-Doppler radar were because of the sensitivity of the microphone once again. The room had to be completely quiet and even then the radar had issues. In the second test where the water height was measured, the results were obtained after numerous tests were run. 
+
+The radar produced acceptable results in this aspect but some room for improvement still exists.
+
+\section{Consistency Tests}
+The checks run to test whether the radar produced similar results, were largely successful. The radar was set up and without interference between tests in a quiet room, the tests were run. The results from all of the tests were very similar and proved that the radar can produce consistent results.
+
+\section{Overall}
+
+The project was a success in the eyes of the objectives originally set out in the Introduction (Chapter \ref{chap:Introduction}). 
+
+The project produced a simple, easy to use and informative radar system that is indeed very accessible where all the components were off-the-shelf and done in a reasonably low budget of $R\ 1500$. The radar is also a well packaged and compact design making it portable and easily usable in open days and information sessions.
+
+The radar is reproducible in the sense that anyone with limited prior knowledge of electronics and embedded systems can reproduce this radar with little issues. Interest in radar systems can easily be realised by the project since the audio component of the radar makes the results more tangible, fun to play with and experiment with remote sensing techniques.
+
+
+
+\newpage

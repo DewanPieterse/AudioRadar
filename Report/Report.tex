@@ -1,0 +1,90 @@
+\documentclass[a4paper,12pt]{report}
+\usepackage[top = 2.5cm, bottom = 2.5cm, left = 2.5cm, right = 2.5cm]{geometry}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage[square]{natbib}
+\usepackage{fancyhdr}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage{amsmath}
+\usepackage{lastpage}
+\usepackage{subcaption}% for side by side figures
+\usepackage{lscape}
+\usepackage{hyphenat}
+\usepackage{setspace}
+\usepackage{eurosym}% Euro symbol
+\usepackage[T1]{fontenc}
+
+% ref packages
+\usepackage{nameref}
+% folowing  must be in this order
+\usepackage{varioref}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+\usepackage{xcolor}  % use to colour text
+\usepackage{subfig}  % putting packages side by side
+\renewcommand\bibname{References}
+\usepackage{sectsty} % adjust size of chapter headings
+\chapternumberfont{\large}
+\chaptertitlefont{\Huge}
+\usepackage{titlesec} % decrease the whitespace at chapter start
+\titleformat{\chapter}[display]
+{\normalfont\Huge\bfseries}{\chaptertitlename\ \thechapter \newline}{0pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-50pt}{5pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% page formatting
+\parskip = 3mm
+\parindent = 0mm
+\renewcommand{\headrulewidth}{0.4pt}
+\rhead[]{\thesection}
+\lhead[\thechapter]{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\include{FrontPage}
+
+\thispagestyle{empty}  % leave a blank page
+\mbox{}
+\newpage
+
+\onehalfspacing
+\nohyphens{
+\thispagestyle{empty}
+\vskip 40mm
+
+\pagenumbering{roman}
+\include{TermsofReference}
+\include{Plagiarism}
+\include{Acknowledgements}
+\include{Abstract}
+\include{Abbreviations}
+
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\fancyhead[RE,LO]{}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\pagestyle{fancy}
+
+\pagenumbering{arabic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{Introduction}					% Done
+\include{LiteraryReview}				  % Done
+\include{Theory}							    % Done
+\include{Methodology}
+\include{Results}
+\include{Conclusions}
+\include{Recommendations}
+\include{Appendix}
+
+\bibliographystyle{IEEEtran}
+\bibliography{References}} % Change to references
+
+\end{document}

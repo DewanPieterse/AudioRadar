@@ -1,0 +1,140 @@
+\chapter{Introduction}\label{chap:Introduction}
+This report details the research, design, implementation and testing of a Low-Cost Embedded Audio Radar System. It was made as a part of a final year undergraduate project.
+
+\section{Background to the Study}
+Radar Systems, where it stands for \textit{RAdio Detection And Ranging}, historically, have been used only as part of military operations or where the military and civilian paths cross such as airports \cite{watson_radar_2009}. Radar is also used to observe the weather.  Since radar operates using radio waves and usually over a long distance, high frequencies are used. 
+
+Radar has been an area of research over the last century, but only at Masters Degree level. The first mention of radar systems is only at the third-year level in most universities where Signals \& Systems courses are taught. Some attempts have been made to make radar more accessible such as the uRad Arduino and Raspberry Pi systems \cite{noauthor_urad_2018}, but they still operate at very high frequencies and a vast amount of background should be known before understanding the system.
+
+No other system exists to fill the gap and start students off at high school and university level and get them interested in the major research field that is Radar Systems.
+
+\section{Objectives of the Study}
+The objective of the project is to produce a simple, easy to use and informative radar system to be as accessible as possible. The system should be reproducible by interested parties with limited experience in radar and embedded systems.
+\subsection{Problems to be Investigated}
+Difficulties that need to be addressed in the project include:
+\begin{itemize}
+\item The principles of radar systems need to be understood by investigation and research.
+\item Investigate the different components of the radar system and choose appropriate electronics.
+\item Plan and design the algorithms for audio signal processing for radar implementation.
+\item Design a user interface for the user to interact with the radar system.
+\item Design and build the audio radar system as an enclosed product.
+\end{itemize}
+
+\subsection{Purpose of the Study}
+The importance of radar systems in everyday life are recognised in the project and can be linked to weather radar, airport surface and control space radar systems up to military defence radar systems. Getting students interested in Science, Technology, Engineering and Mathematics (STEM) can be a tough challenge as is, but the specialised field of radar systems poses an even greater challenge. To generate interest in an easy and accessible way, the audio radar can fill that gap and get even generate interest from the general public in the workings and possibilities of radar. Furthermore, the audio radar is built using off-the-shelf components and open-source software to show just how attainable and open radars can be.
+
+\section{Scope and Limitations}
+\subsection{Scope}
+The scope of the project includes the design and implementation of an audio radar system comprising of electronic components and embedded systems easily accessible and low cost. The following is included in the scope:
+\begin{itemize}
+\item Investigate and implement a suitable embedded platform to generate, transmit, receive and process audio radar signals using the Python programming language.
+\item Building the interfaces between the transmit, receive and processing components of the system using a suitable communications protocol.
+\item Design and implement the user interface of the system that renders the product to be as user-friendly as reasonably possible.
+\item Design and build a portable enclosure to protect the system and assure repeated use in a portable manner.
+\item Report on the entire process that consists of the design, implementation and results of an embedded audio radar system.
+\end{itemize}
+\subsection{Limitations}
+The limitations of the project include:
+\begin{itemize}
+\item The time limitation on the project is 12 weeks in total.
+\item A total budget for all of the components is R 1500.
+\item Analysis of obtained data. For the CW radar, only a spectrogram would be produced and for Pulsed-Doppler only a Range vs Doppler Frequency (velocity) plot would be produced.
+\end{itemize}
+
+\section{User Requirements\label{UserReqs}}
+The user requirements for this project have been derived from the scope of the project. The requirements can be seen in Table \ref{table:UserReqs} below.
+
+\begin{table}[h!]
+    \begin{tabular}{ p{3cm} p{12.25cm} }
+         \multicolumn{2}{c}{} \\
+         \hline
+         \textbf{Reference ID} & \textbf{Requirement} \\
+         \hline
+         \\ UR1 & Low-Cost implementation of an audio radar \\
+         \\ UR2 & Simple user interface for layperson to interact with system \\
+         \\ UR3 & Measure distance and radial velocity from the radar \\
+         \\ UR4 & Portable design allows for usage at open days \\
+         \hline
+    \end{tabular}
+    \caption{User Requirements}
+    \label{table:UserReqs}
+\end{table}
+
+\subsection{User Requirements Analysis}
+
+Given the requirements in Table \ref{table:UserReqs} above, the following functional requirements in Table \ref{table:FuncReqs} have been developed with the end user in mind.
+
+\subsection{Functional Requirements}
+The basic overview of the functional requirements can be seen in Figure \ref{pic:overview} below.
+\begin{table}[h!]
+    \begin{tabular}{ p{3cm}p{8.75cm}p{3cm} }
+         \multicolumn{3}{c}{} \\
+         \hline
+         \textbf{Reference ID} & \textbf{Requirement} & \textbf{Derived From} \\
+         \hline
+        \\  FR1 & Operate the radar within the audible spectrum & UR1\\
+         \\ FR2 & Use easily accessible and low-cost, off-the-shelf components & UR1\\
+         \\ FR3 & Portable design allows for usage at open days & UR4\\
+         \hline
+    \end{tabular}
+    \caption{Functional Requirements}
+    \label{table:FuncReqs}
+\end{table}
+
+\subsection{Technical Specifications}
+\begin{table}[h!]
+    \begin{tabular}{ p{3cm}p{8.75cm}p{3cm} }
+         \multicolumn{3}{c}{} \\
+         \hline
+        \textbf{Reference ID} & \textbf{Requirement} & \textbf{Derived From} \\
+         \hline
+         \\ TS1 & Operate $5000\ Hz$ to $12000\ Hz$ in the audible spectrum & FR1\\
+         \\ TS2 & Measure distance within $15\ m$ and $5\ m$ and velocity up to $40\ km/h$ & FR2\\
+         \\ TS3 & Fit within an A4 paper box to be portable & FR3\\
+         \hline
+    \end{tabular}
+    \caption{Technical Specifications}
+    \label{table:TechSpecs}
+\end{table}
+
+\subsection{Constraints}
+Constraints that pose a threat to the project include:
+\begin{itemize}
+\item $R1500$ budget of all the components and materials used.
+\item The $12$ week time limit to complete the project and report.
+\item To only use off-the-shelf components to render the project reproducible by anyone with the tutorial to experience a low cost radar.
+\item The radar needs to be small enough to carry around.
+\end{itemize}
+
+\section{Plan of Development}
+The paper will start by addressing the detailed user and technical requirements that the audio radar must follow. The audio radar would be developed by first doing a comprehensive review of existing works and research and other similar products. 
+
+Following the review of the literature, the embedded audio radar will be designed. This includes the process of selecting different hardware components, as well as the embedded platforms for processing and capturing the signal data. It also includes the classical engineering process followed to test and validate each component to assure that the candidates yield the required final results. 
+
+Furthermore, the final choices of components are laid out and the final design and implementation of the audio radar will follow. The results obtained using the selected hardware will be shown whereafter it will be discussed in detail.
+
+The report will conclude whether the audio radar system satisfies the initial user and technical requirements. Following the conclusion, recommendations will be made based on the discussion concerning the results.
+
+\newpage
+\section{Report Outline}
+The table below outlines the report structure following the sections as set out in the Plan of Development above.
+\begin{table}[h!]
+  \begin{center}
+    \label{tab:outline}
+    \begin{tabular}{p{0.11\textwidth}p{0.2\textwidth}p{0.6\textwidth}}
+    \hline
+      \textbf{Chapters} & \textbf{Project Stage} & \textbf{Description}\\
+      \hline
+      \\ 2 & Requirements & This chapter sets out the requirements of the audio radar. \\ \\
+      3 & Literature Review & The chapter reviews previous research conducted into radar systems regarding short range, audible frequencies or low-cost implementations.\\ \\
+      4 & Theory of Radar & This chapter covers all the relevant topics regarding radar that the audio radar utilises. The chapter excludes any theory that is not directly used by the audio radar.\\ \\
+      5, 6 & Design, Implementation & Subsystems are tested and decided on and the detailed design of the complete radar is laid out in these chapters.\\ \\
+      7 & Results, Discussion, Conclusion & Results of the implemented audio radar is shown. Discussion follows about whether the requirements were met and possible improvements and recommendations.\\ \\ 
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Report Outline}
+\end{table}
+
+
+\newpage
