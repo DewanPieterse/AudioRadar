@@ -106,3 +106,4 @@ ALSA lib pcm_dmix.c:1043:(snd_pcm_dmix_open) The dmix plugin supports only playb
 192.168.17.142 - - [14/Oct/2019 10:08:25] "GET /static/assets/img/favicon.ico HTTP/1.1" 200 -
 ALSA lib pcm.c:8424:(snd_pcm_recover) underrun occurred
 ALSA lib pcm.c:8424:(snd_pcm_recover) underrun occurred
+ALSA lib pcm.c:8424:(snd_pcm_recover) underrun occurred
